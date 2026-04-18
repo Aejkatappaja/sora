@@ -75,6 +75,7 @@ vim.cmd("colorscheme sora")
 ```lua
 require("sora").setup({
   transparent = false,
+  italic = true,
   italic_comments = true,
 
   on_colors = function(colors)

@@ -2,6 +2,7 @@ local M = {}
 
 M.config = {
   transparent = false,
+  italic = true,
   italic_comments = true,
   on_colors = function(colors) end,
   on_highlights = function(highlights, colors) end,
@@ -54,7 +55,11 @@ function M.load()
     highlights.FloatBorder = { fg = "NONE", bg = "NONE" }
   end
 
-  if not M.config.italic_comments then
+  if not M.config.italic then
+    for _, hl in pairs(highlights) do
+      hl.italic = false
+    end
+  elseif not M.config.italic_comments then
     for _, name in ipairs({ "Comment", "@comment", "@comment.documentation" }) do
       if highlights[name] then
         highlights[name].italic = false
