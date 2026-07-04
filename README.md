@@ -74,21 +74,89 @@ vim.cmd("colorscheme sora")
 
 ## Configuration
 
+Defaults - pass only what you want to change:
+
 ```lua
 require("sora").setup({
-  transparent = false,
-  italic = true,
-  italic_comments = true,
+  transparent = false,      -- transparent background (also strips float/statusline bg)
+  italic = true,            -- italics globally
+  italic_comments = true,   -- italics for comments (ignored if italic = false)
 
+  on_colors = function(colors) end,        -- override palette before highlights build
+  on_highlights = function(hl, colors) end, -- override highlight groups after they build
+})
+```
+
+### Recipes
+
+<details>
+<summary><b>Transparent background</b></summary>
+
+```lua
+require("sora").setup({ transparent = true })
+```
+
+</details>
+
+<details>
+<summary><b>No italics</b></summary>
+
+```lua
+require("sora").setup({ italic = false })
+-- or keep italics everywhere but comments:
+require("sora").setup({ italic_comments = false })
+```
+
+</details>
+
+<details>
+<summary><b>Pure black OLED background</b></summary>
+
+```lua
+require("sora").setup({
   on_colors = function(colors)
-    -- colors.bg = "#000000"
-  end,
-
-  on_highlights = function(hl, colors)
-    -- hl.Normal = { fg = colors.fg, bg = "#000000" }
+    colors.bg = "#000000"
+    colors.bg_float = "#000000"
+    colors.bg_statusline = "#000000"
   end,
 })
 ```
+
+</details>
+
+<details>
+<summary><b>Tweak a syntax color</b></summary>
+
+`on_colors` runs before highlights build, so changing a palette key repaints every group that uses it. Keys live in [`lua/sora/palette.lua`](lua/sora/palette.lua).
+
+```lua
+require("sora").setup({
+  on_colors = function(colors)
+    colors.func = "#a0d8f0"  -- brighter functions
+    colors.string = colors.sage
+  end,
+})
+```
+
+</details>
+
+<details>
+<summary><b>Override highlight groups</b></summary>
+
+`on_highlights` runs last and wins over everything. Use it for per-group control.
+
+```lua
+require("sora").setup({
+  on_highlights = function(hl, colors)
+    hl.Comment = { fg = colors.fg_comment, italic = true }
+    hl.LineNr = { fg = colors.fg_gutter }
+    hl.CursorLineNr = { fg = colors.cyan, bold = true }
+    hl.FloatBorder = { fg = colors.border, bg = colors.bg_float }
+  end,
+})
+```
+
+</details>
 
 ## Palette
 
