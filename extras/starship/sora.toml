@@ -1,0 +1,74 @@
+# Sora palette for Starship.
+# Install: copy into ~/.config/starship.toml, or if you keep your own config,
+# copy the [palettes.sora] block below and add `palette = "sora"` at the top.
+
+palette = "sora"
+
+[palettes.sora]
+bg          = "#0e1018"
+fg          = "#c8d0e0"
+fg_dim      = "#9aa4b8"
+cyan        = "#80c8e0"
+purple      = "#b0a0d8"
+sage        = "#90c8a0"
+rose        = "#d0909c"
+gold        = "#d4b878"
+peach       = "#d0a888"
+teal        = "#78b8b0"
+steel       = "#8898b8"
+git_add     = "#68b080"
+git_change  = "#6898b8"
+git_delete  = "#b86068"
+error       = "#c46c78"
+warning     = "#c8a860"
+
+[directory]
+style = "cyan bold"
+
+[git_branch]
+style = "purple"
+
+[git_status]
+style = "rose"
+
+[git_state]
+style = "gold"
+
+[cmd_duration]
+style = "gold"
+
+[hostname]
+style = "steel"
+
+[username]
+style_user = "steel"
+style_root = "rose bold"
+
+[time]
+style = "fg_dim"
+
+[character]
+success_symbol = "[❯](sage)"
+error_symbol   = "[❯](error)"
+vimcmd_symbol  = "[❮](purple)"
+
+[nodejs]
+style = "sage"
+
+[rust]
+style = "peach"
+
+[python]
+style = "gold"
+
+[golang]
+style = "cyan"
+
+[lua]
+style = "purple"
+
+[docker_context]
+style = "teal"
+
+[package]
+style = "gold"
