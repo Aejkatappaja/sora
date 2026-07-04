@@ -8,6 +8,8 @@
   <a href="#palette">Palette</a> &middot;
   <a href="#supported-plugins">Plugins</a> &middot;
   <a href="#extras">Extras</a>
+  <br/><br/>
+  <a href="https://github.com/Aejkatappaja/sora/actions/workflows/ci.yml"><img src="https://github.com/Aejkatappaja/sora/actions/workflows/ci.yml/badge.svg" alt="CI"/></a>
 </p>
 
 ---
@@ -72,21 +74,89 @@ vim.cmd("colorscheme sora")
 
 ## Configuration
 
+Defaults - pass only what you want to change:
+
 ```lua
 require("sora").setup({
-  transparent = false,
-  italic = true,
-  italic_comments = true,
+  transparent = false,      -- transparent background (also strips float/statusline bg)
+  italic = true,            -- italics globally
+  italic_comments = true,   -- italics for comments (ignored if italic = false)
 
+  on_colors = function(colors) end,        -- override palette before highlights build
+  on_highlights = function(hl, colors) end, -- override highlight groups after they build
+})
+```
+
+### Recipes
+
+<details>
+<summary><b>Transparent background</b></summary>
+
+```lua
+require("sora").setup({ transparent = true })
+```
+
+</details>
+
+<details>
+<summary><b>No italics</b></summary>
+
+```lua
+require("sora").setup({ italic = false })
+-- or keep italics everywhere but comments:
+require("sora").setup({ italic_comments = false })
+```
+
+</details>
+
+<details>
+<summary><b>Pure black OLED background</b></summary>
+
+```lua
+require("sora").setup({
   on_colors = function(colors)
-    -- colors.bg = "#000000"
-  end,
-
-  on_highlights = function(hl, colors)
-    -- hl.Normal = { fg = colors.fg, bg = "#000000" }
+    colors.bg = "#000000"
+    colors.bg_float = "#000000"
+    colors.bg_statusline = "#000000"
   end,
 })
 ```
+
+</details>
+
+<details>
+<summary><b>Tweak a syntax color</b></summary>
+
+`on_colors` runs before highlights build, so changing a palette key repaints every group that uses it. Keys live in [`lua/sora/palette.lua`](lua/sora/palette.lua).
+
+```lua
+require("sora").setup({
+  on_colors = function(colors)
+    colors.func = "#a0d8f0"  -- brighter functions
+    colors.string = colors.sage
+  end,
+})
+```
+
+</details>
+
+<details>
+<summary><b>Override highlight groups</b></summary>
+
+`on_highlights` runs last and wins over everything. Use it for per-group control.
+
+```lua
+require("sora").setup({
+  on_highlights = function(hl, colors)
+    hl.Comment = { fg = colors.fg_comment, italic = true }
+    hl.LineNr = { fg = colors.fg_gutter }
+    hl.CursorLineNr = { fg = colors.cyan, bold = true }
+    hl.FloatBorder = { fg = colors.border, bg = colors.bg_float }
+  end,
+})
+```
+
+</details>
 
 ## Palette
 
@@ -139,7 +209,7 @@ Sora everywhere:
 
 | App | File | Install |
 |:----|:-----|:--------|
-| [Zed](https://zed.dev) | `extras/zed/sora.json` | Install from Zed extension store |
+| [Zed](https://zed.dev) | [sora-theme](https://github.com/Aejkatappaja/sora-theme) | **Extensions > search "Sora"**, or [view in directory](https://zed.dev/extensions/sora-theme) |
 | [Ghostty](https://ghostty.org) | `extras/ghostty/sora` | `cp` to `~/.config/ghostty/themes/` |
 | [Kitty](https://sw.kovidgoyal.net/kitty/) | `extras/kitty/sora.conf` | `include` in `kitty.conf` |
 | [Alacritty](https://alacritty.org) | `extras/alacritty/sora.toml` | `import` in `alacritty.toml` |
@@ -151,6 +221,7 @@ Sora everywhere:
 | [Delta](https://github.com/dandavison/delta) | `extras/delta/sora.gitconfig` | `include` in `.gitconfig` (install bat theme first) |
 | [OpenCode](https://opencode.ai) | `extras/opencode/sora.json` | `cp` to `~/.config/opencode/themes/` |
 | [fzf](https://github.com/junegunn/fzf) | `extras/fzf/sora.sh` | `source` in shell rc |
+| [Starship](https://starship.rs) | `extras/starship/sora.toml` | `cp` to `~/.config/starship.toml`, or merge the `[palettes.sora]` block |
 | [Yazi](https://yazi-rs.github.io) | `extras/yazi/sora.toml` | `cp` to `~/.config/yazi/theme.toml` |
 | [btop](https://github.com/aristocratos/btop) | `extras/btop/sora.theme` | `cp` to `~/.config/btop/themes/` |
 | [tmux](https://github.com/tmux/tmux) | `extras/tmux/sora.tmux.conf` | `source-file` in `tmux.conf` |
@@ -160,7 +231,7 @@ Sora everywhere:
 | Firefox Start Page | `extras/firefox-start/index.html` | set as homepage `file://...` (edit `USER` const first) |
 | [macOS Terminal](https://support.apple.com/guide/terminal) | `extras/macos-terminal/sora.terminal` | double-click to import |
 | [iTerm2](https://iterm2.com) | `extras/macos-terminal/sora.itermcolors` | import in Preferences > Profiles > Colors |
-| [Obsidian](https://obsidian.md) | `extras/obsidian/theme.css` | `cp` folder to `<vault>/.obsidian/themes/Sora/` |
+| [Obsidian](https://obsidian.md) | [sora-obsidian](https://github.com/Aejkatappaja/sora-obsidian) | **Settings > Appearance > Themes > Manage > search "Sora"**, or [view in directory](https://community.obsidian.md/themes/sora) |
 
 ### tmux
 
