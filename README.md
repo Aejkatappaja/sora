@@ -141,7 +141,7 @@ Sora everywhere:
 
 | App | File | Install |
 |:----|:-----|:--------|
-| [Zed](https://zed.dev) | `extras/zed/sora.json` | Install from Zed extension store |
+| [Zed](https://zed.dev) | [sora-theme](https://github.com/Aejkatappaja/sora-theme) | **Extensions > search "Sora"**, or [view in directory](https://zed.dev/extensions/sora-theme) |
 | [Ghostty](https://ghostty.org) | `extras/ghostty/sora` | `cp` to `~/.config/ghostty/themes/` |
 | [Kitty](https://sw.kovidgoyal.net/kitty/) | `extras/kitty/sora.conf` | `include` in `kitty.conf` |
 | [Alacritty](https://alacritty.org) | `extras/alacritty/sora.toml` | `import` in `alacritty.toml` |
@@ -163,7 +163,7 @@ Sora everywhere:
 | Firefox Start Page | `extras/firefox-start/index.html` | set as homepage `file://...` (edit `USER` const first) |
 | [macOS Terminal](https://support.apple.com/guide/terminal) | `extras/macos-terminal/sora.terminal` | double-click to import |
 | [iTerm2](https://iterm2.com) | `extras/macos-terminal/sora.itermcolors` | import in Preferences > Profiles > Colors |
-| [Obsidian](https://obsidian.md) | `extras/obsidian/theme.css` | `cp` folder to `<vault>/.obsidian/themes/Sora/` |
+| [Obsidian](https://obsidian.md) | [sora-obsidian](https://github.com/Aejkatappaja/sora-obsidian) | **Settings > Appearance > Themes > Manage > search "Sora"**, or [view in directory](https://community.obsidian.md/themes/sora) |
 
 ### tmux
 
