@@ -8,6 +8,8 @@
   <a href="#palette">Palette</a> &middot;
   <a href="#supported-plugins">Plugins</a> &middot;
   <a href="#extras">Extras</a>
+  <br/><br/>
+  <a href="https://github.com/Aejkatappaja/sora/actions/workflows/ci.yml"><img src="https://github.com/Aejkatappaja/sora/actions/workflows/ci.yml/badge.svg" alt="CI"/></a>
 </p>
 
 ---
