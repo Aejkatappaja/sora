@@ -219,6 +219,7 @@ Sora everywhere:
 | [Lazygit](https://github.com/jesseduffield/lazygit) | `extras/lazygit/sora.yml` | merge into `config.yml` |
 | [bat](https://github.com/sharkdp/bat) | `extras/bat/sora.tmTheme` | `cp` to `$(bat --config-dir)/themes/` + `bat cache --build` |
 | [Delta](https://github.com/dandavison/delta) | `extras/delta/sora.gitconfig` | `include` in `.gitconfig` (install bat theme first) |
+| [Hunk](https://github.com/modem-dev/hunk) | `extras/hunk/sora.toml` | `cp` to `~/.config/hunk/config.toml`, or merge the `[custom_theme]` block |
 | [OpenCode](https://opencode.ai) | `extras/opencode/sora.json` | `cp` to `~/.config/opencode/themes/` |
 | [fzf](https://github.com/junegunn/fzf) | `extras/fzf/sora.sh` | `source` in shell rc |
 | [Starship](https://starship.rs) | `extras/starship/sora.toml` | `cp` to `~/.config/starship.toml`, or merge the `[palettes.sora]` block |
