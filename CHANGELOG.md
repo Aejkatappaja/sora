@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/Aejkatappaja/sora/compare/v1.0.0...v1.1.0) (2026-07-12)
+
+
+### Features
+
+* **hunk:** add Hunk terminal diff viewer theme ([#7](https://github.com/Aejkatappaja/sora/issues/7)) ([41bec2c](https://github.com/Aejkatappaja/sora/commit/41bec2c3a80d28f53f97c34393a8ad5f2e41e6b2))
+
 ## [1.0.0](https://github.com/Aejkatappaja/sora/compare/v0.1.0...v1.0.0) (2026-07-04)
 
 
