@@ -226,6 +226,7 @@ Sora everywhere:
 | [Yazi](https://yazi-rs.github.io) | `extras/yazi/sora.toml` | `cp` to `~/.config/yazi/theme.toml` |
 | [btop](https://github.com/aristocratos/btop) | `extras/btop/sora.theme` | `cp` to `~/.config/btop/themes/` |
 | [tmux](https://github.com/tmux/tmux) | `extras/tmux/sora.tmux.conf` | `source-file` in `tmux.conf` |
+| [Herdr](https://herdr.dev) | `extras/herdr/sora.toml` | `cp` to `~/.config/herdr/config.toml`, or merge the `[theme.custom]` block |
 | [tokyo-night-tmux](https://github.com/janoamaral/tokyo-night-tmux) | `extras/tmux/tokyo-night-tmux-sora.sh` | see [tmux](#tmux) below |
 | [Slack](https://slack.com) | `extras/slack/sora.txt` | paste in Slack sidebar theme |
 | [Firefox](https://www.mozilla.org/firefox/) | `extras/firefox/manifest.json` | zip and load via `about:debugging` |
