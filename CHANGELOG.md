@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.4.0](https://github.com/Aejkatappaja/sora/compare/v1.3.0...v1.4.0) (2026-07-20)
+
+
+### Features
+
+* **eza:** add eza theme ([2af0edb](https://github.com/Aejkatappaja/sora/commit/2af0edb7b4edfe38cec9a049e37c3a362e6dd3b3))
+* **eza:** add eza theme via EZA_COLORS ([ec832b4](https://github.com/Aejkatappaja/sora/commit/ec832b4ba832b9c12c5f5e688c25fbebe0938cf1))
+* **helix:** add Helix editor theme ([01f3b5c](https://github.com/Aejkatappaja/sora/commit/01f3b5c76c19de4c1fc3ba1814db97db375bb675))
+* **helix:** add Helix editor theme ([bc4e058](https://github.com/Aejkatappaja/sora/commit/bc4e058bcdaae64ffdbab31cf0b2d07b7c1ebf2d))
+
 ## [1.3.0](https://github.com/Aejkatappaja/sora/compare/v1.2.0...v1.3.0) (2026-07-20)
 
 
