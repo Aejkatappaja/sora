@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/Aejkatappaja/sora/compare/v1.1.0...v1.2.0) (2026-07-20)
+
+
+### Features
+
+* **site:** fetch GitHub stars live in the hero badge ([18a7e98](https://github.com/Aejkatappaja/sora/commit/18a7e98d33a630fe684486e843730a8eb61c2eec))
+* **site:** live GitHub stars in the hero badge ([8d9ceb0](https://github.com/Aejkatappaja/sora/commit/8d9ceb0d5f5c980bc31c246ef0b9a0ede2cd14ea))
+
 ## [1.1.0](https://github.com/Aejkatappaja/sora/compare/v1.0.0...v1.1.0) (2026-07-12)
 
 
