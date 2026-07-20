@@ -216,6 +216,7 @@ Sora everywhere:
 | [WezTerm](https://wezfurlong.org/wezterm/) | `extras/wezterm/sora.toml` | `cp` to `~/.config/wezterm/colors/` |
 | [Foot](https://codeberg.org/dnkl/foot) | `extras/foot/sora.ini` | `include` in `foot.ini` |
 | [Vim](https://www.vim.org) | `extras/vim/sora.vim` | `cp` to `~/.vim/colors/` |
+| [Helix](https://helix-editor.com) | `extras/helix/sora.toml` | `cp` to `~/.config/helix/themes/`, then set `theme = "sora"` |
 | [Lazygit](https://github.com/jesseduffield/lazygit) | `extras/lazygit/sora.yml` | merge into `config.yml` |
 | [bat](https://github.com/sharkdp/bat) | `extras/bat/sora.tmTheme` | `cp` to `$(bat --config-dir)/themes/` + `bat cache --build` |
 | [Delta](https://github.com/dandavison/delta) | `extras/delta/sora.gitconfig` | `include` in `.gitconfig` (install bat theme first) |
