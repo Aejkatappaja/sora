@@ -222,6 +222,7 @@ Sora everywhere:
 | [Hunk](https://github.com/modem-dev/hunk) | `extras/hunk/sora.toml` | `cp` to `~/.config/hunk/config.toml`, or merge the `[custom_theme]` block |
 | [OpenCode](https://opencode.ai) | `extras/opencode/sora.json` | `cp` to `~/.config/opencode/themes/` |
 | [fzf](https://github.com/junegunn/fzf) | `extras/fzf/sora.sh` | `source` in shell rc |
+| [eza](https://eza.rocks) | `extras/eza/sora.sh` | `source` in shell rc |
 | [Starship](https://starship.rs) | `extras/starship/sora.toml` | `cp` to `~/.config/starship.toml`, or merge the `[palettes.sora]` block |
 | [Yazi](https://yazi-rs.github.io) | `extras/yazi/sora.toml` | `cp` to `~/.config/yazi/theme.toml` |
 | [btop](https://github.com/aristocratos/btop) | `extras/btop/sora.theme` | `cp` to `~/.config/btop/themes/` |

@@ -677,6 +677,7 @@ end</div>
     ]],
     ["Tools & TUIs", [
       ["bat", "config dir", 'cp extras/bat/sora.tmTheme "$(bat --config-dir)/themes/" && bat cache --build', "bat", "var(--gold)"],
+      ["eza", "shell rc", "source extras/eza/sora.sh", null, "var(--sage)"],
       ["Delta", ".gitconfig", "[include] path = extras/delta/sora.gitconfig", null, "var(--git-change)"],
       ["Lazygit", "config.yml", "merge extras/lazygit/sora.yml into ~/.config/lazygit/config.yml", null, "var(--git-change)"],
       ["Hunk", "config.toml", "cp extras/hunk/sora.toml ~/.config/hunk/config.toml", "img:hunk", "var(--teal)"],
