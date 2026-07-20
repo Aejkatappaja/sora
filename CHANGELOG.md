@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0](https://github.com/Aejkatappaja/sora/compare/v1.2.0...v1.3.0) (2026-07-20)
+
+
+### Features
+
+* **herdr:** add Herdr terminal multiplexer theme ([ca22538](https://github.com/Aejkatappaja/sora/commit/ca22538a1fb48f6f3763e6f7210b8a660f2561a1))
+* **herdr:** add Herdr terminal multiplexer theme ([cf97e1b](https://github.com/Aejkatappaja/sora/commit/cf97e1b8d7398d65727e4f42894b34e6a918212d))
+
 ## [1.2.0](https://github.com/Aejkatappaja/sora/compare/v1.1.0...v1.2.0) (2026-07-20)
 
 
