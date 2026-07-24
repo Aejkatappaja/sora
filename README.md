@@ -165,16 +165,16 @@ require("sora").setup({
 
 | Role | Dark | | Light | |
 | :--- | :--: | :-- | :--: | :-- |
-| Background | ![](https://placehold.co/16x16/0e1018/0e1018) | `#0e1018` | ![](https://placehold.co/16x16/eceff4/eceff4) | `#eceff4` |
-| Foreground | ![](https://placehold.co/16x16/c8d0e0/c8d0e0) | `#c8d0e0` | ![](https://placehold.co/16x16/3a4256/3a4256) | `#3a4256` |
-| **Cyan** | ![](https://placehold.co/16x16/80c8e0/80c8e0) | `#80c8e0` | ![](https://placehold.co/16x16/2c8fb0/2c8fb0) | `#2c8fb0` |
-| Purple | ![](https://placehold.co/16x16/b0a0d8/b0a0d8) | `#b0a0d8` | ![](https://placehold.co/16x16/7a5fb8/7a5fb8) | `#7a5fb8` |
-| Sage | ![](https://placehold.co/16x16/90c8a0/90c8a0) | `#90c8a0` | ![](https://placehold.co/16x16/3f9668/3f9668) | `#3f9668` |
-| Peach | ![](https://placehold.co/16x16/d0a888/d0a888) | `#d0a888` | ![](https://placehold.co/16x16/bf6a3a/bf6a3a) | `#bf6a3a` |
-| Gold | ![](https://placehold.co/16x16/d4b878/d4b878) | `#d4b878` | ![](https://placehold.co/16x16/9a7d1e/9a7d1e) | `#9a7d1e` |
-| Rose | ![](https://placehold.co/16x16/d0909c/d0909c) | `#d0909c` | ![](https://placehold.co/16x16/c05068/c05068) | `#c05068` |
-| Teal | ![](https://placehold.co/16x16/78b8b0/78b8b0) | `#78b8b0` | ![](https://placehold.co/16x16/2f8b82/2f8b82) | `#2f8b82` |
-| Steel | ![](https://placehold.co/16x16/8898b8/8898b8) | `#8898b8` | ![](https://placehold.co/16x16/5a6a90/5a6a90) | `#5a6a90` |
+| Background | ![](https://placehold.co/16x16/0e1018/0e1018) | `#0e1018` | ![](https://placehold.co/16x16/e4e7ee/e4e7ee) | `#e4e7ee` |
+| Foreground | ![](https://placehold.co/16x16/c8d0e0/c8d0e0) | `#c8d0e0` | ![](https://placehold.co/16x16/323f59/323f59) | `#323f59` |
+| **Cyan** | ![](https://placehold.co/16x16/80c8e0/80c8e0) | `#80c8e0` | ![](https://placehold.co/16x16/206b84/206b84) | `#206b84` |
+| Purple | ![](https://placehold.co/16x16/b0a0d8/b0a0d8) | `#b0a0d8` | ![](https://placehold.co/16x16/6e51b8/6e51b8) | `#6e51b8` |
+| Sage | ![](https://placehold.co/16x16/90c8a0/90c8a0) | `#90c8a0` | ![](https://placehold.co/16x16/376f47/376f47) | `#376f47` |
+| Peach | ![](https://placehold.co/16x16/d0a888/d0a888) | `#d0a888` | ![](https://placehold.co/16x16/875935/875935) | `#875935` |
+| Gold | ![](https://placehold.co/16x16/d4b878/d4b878) | `#d4b878` | ![](https://placehold.co/16x16/796027/796027) | `#796027` |
+| Rose | ![](https://placehold.co/16x16/d0909c/d0909c) | `#d0909c` | ![](https://placehold.co/16x16/a24556/a24556) | `#a24556` |
+| Teal | ![](https://placehold.co/16x16/78b8b0/78b8b0) | `#78b8b0` | ![](https://placehold.co/16x16/396c66/396c66) | `#396c66` |
+| Steel | ![](https://placehold.co/16x16/8898b8/8898b8) | `#8898b8` | ![](https://placehold.co/16x16/516489/516489) | `#516489` |
 
 ## Supported Plugins
 

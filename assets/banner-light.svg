@@ -1,31 +1,31 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 520" fill="none">
   <defs>
     <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#2c8fb0" stop-opacity="0.06"/>
-      <stop offset="100%" stop-color="#eceff4" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#206b84" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#e4e7ee" stop-opacity="0"/>
     </linearGradient>
   </defs>
 
   <!-- background -->
-  <rect width="840" height="520" rx="12" fill="#eceff4"/>
+  <rect width="840" height="520" rx="12" fill="#e4e7ee"/>
   <rect width="840" height="520" rx="12" fill="url(#glow)"/>
 
   <!-- watermark kanji -->
-  <text x="700" y="420" font-family="serif" font-size="300" fill="#cdd4e0" fill-opacity="0.5" text-anchor="middle">空</text>
+  <text x="700" y="420" font-family="serif" font-size="300" fill="#c2cad9" fill-opacity="0.5" text-anchor="middle">空</text>
 
   <!-- title bar dots -->
-  <circle cx="32" cy="24" r="6" fill="#c04858" opacity="0.8"/>
-  <circle cx="52" cy="24" r="6" fill="#9a7d1e" opacity="0.8"/>
-  <circle cx="72" cy="24" r="6" fill="#3f9668" opacity="0.8"/>
+  <circle cx="32" cy="24" r="6" fill="#bd2739" opacity="0.8"/>
+  <circle cx="52" cy="24" r="6" fill="#796027" opacity="0.8"/>
+  <circle cx="72" cy="24" r="6" fill="#376f47" opacity="0.8"/>
 
   <!-- title -->
-  <text x="420" y="28" text-anchor="middle" font-family="'SF Mono','JetBrains Mono','Fira Code',monospace" font-size="12" fill="#8a93a6">sora</text>
+  <text x="420" y="28" text-anchor="middle" font-family="'SF Mono','JetBrains Mono','Fira Code',monospace" font-size="12" fill="#586478">sora</text>
 
   <!-- separator -->
-  <line x1="0" y1="44" x2="840" y2="44" stroke="#cdd4e0" stroke-width="1"/>
+  <line x1="0" y1="44" x2="840" y2="44" stroke="#c2cad9" stroke-width="1"/>
 
   <!-- line numbers -->
-  <g font-family="'SF Mono','JetBrains Mono','Fira Code',monospace" font-size="13" fill="#b8c0d0">
+  <g font-family="'SF Mono','JetBrains Mono','Fira Code',monospace" font-size="13" fill="#aab3c5">
     <text x="28" y="76" text-anchor="end">5</text>
     <text x="28" y="96" text-anchor="end">6</text>
     <text x="28" y="116" text-anchor="end">7</text>
@@ -52,25 +52,25 @@
 
   <!-- code -->
   <g font-family="'SF Mono','JetBrains Mono','Fira Code',monospace" font-size="13" xml:space="preserve">
-    <text x="48" y="76"><tspan fill="#7a5fb8" font-style="italic">type</tspan><tspan fill="#bf6a3a"> Client </tspan><tspan fill="#7a5fb8" font-style="italic">struct</tspan><tspan fill="#5a6478"> {</tspan></text>
-    <text x="48" y="96"><tspan fill="#3a4256">    ID     </tspan><tspan fill="#bf6a3a" font-style="italic">string</tspan><tspan fill="#3a4256">  </tspan><tspan fill="#3f9668">`json:"id"`</tspan></text>
-    <text x="48" y="116"><tspan fill="#3a4256">    Score  </tspan><tspan fill="#bf6a3a" font-style="italic">float64</tspan><tspan fill="#3a4256"> </tspan><tspan fill="#3f9668">`json:"score"`</tspan></text>
-    <text x="48" y="136"><tspan fill="#3a4256">    Active </tspan><tspan fill="#bf6a3a" font-style="italic">bool</tspan><tspan fill="#3a4256">    </tspan><tspan fill="#3f9668">`json:"active"`</tspan></text>
-    <text x="48" y="156"><tspan fill="#5a6478">}</tspan></text>
-    <text x="48" y="196"><tspan fill="#7a5fb8" font-style="italic">const</tspan><tspan fill="#9a7d1e"> MaxRetries</tspan><tspan fill="#5a6a90"> = </tspan><tspan fill="#9a7d1e">5</tspan></text>
-    <text x="48" y="236"><tspan fill="#8a93a6" font-style="italic">// Register adds a client and computes its score.</tspan></text>
-    <text x="48" y="256"><tspan fill="#7a5fb8" font-style="italic">func</tspan><tspan fill="#2c8fb0"> Register</tspan><tspan fill="#5a6478">(</tspan><tspan fill="#bf6a3a">id </tspan><tspan fill="#bf6a3a" font-style="italic">string</tspan><tspan fill="#5a6478">, </tspan><tspan fill="#bf6a3a">values </tspan><tspan fill="#5a6478">[]</tspan><tspan fill="#bf6a3a" font-style="italic">float64</tspan><tspan fill="#5a6478">) (</tspan><tspan fill="#5a6a90">*</tspan><tspan fill="#bf6a3a">Client</tspan><tspan fill="#5a6478">, </tspan><tspan fill="#bf6a3a" font-style="italic">error</tspan><tspan fill="#5a6478">) {</tspan></text>
-    <text x="48" y="276"><tspan fill="#3a4256">    </tspan><tspan fill="#7a5fb8" font-style="italic">if</tspan><tspan fill="#3a4256"> id </tspan><tspan fill="#5a6a90">== </tspan><tspan fill="#3f9668">""</tspan><tspan fill="#5a6478"> {</tspan></text>
-    <text x="48" y="296"><tspan fill="#3a4256">        </tspan><tspan fill="#7a5fb8" font-style="italic">return</tspan><tspan fill="#c05068" font-style="italic"> nil</tspan><tspan fill="#5a6478">, </tspan><tspan fill="#3a4256">fmt</tspan><tspan fill="#5a6478">.</tspan><tspan fill="#2c8fb0">Errorf</tspan><tspan fill="#5a6478">(</tspan><tspan fill="#3f9668">"client </tspan><tspan fill="#2f8b82">%q</tspan><tspan fill="#3f9668"> invalid"</tspan><tspan fill="#5a6478">, </tspan><tspan fill="#3a4256">id</tspan><tspan fill="#5a6478">)</tspan></text>
-    <text x="48" y="316"><tspan fill="#3a4256">    </tspan><tspan fill="#5a6478">}</tspan></text>
-    <text x="48" y="336"><tspan fill="#3a4256">    score </tspan><tspan fill="#5a6a90">:= </tspan><tspan fill="#9a7d1e">0.0</tspan></text>
-    <text x="48" y="356"><tspan fill="#3a4256">    </tspan><tspan fill="#7a5fb8" font-style="italic">for</tspan><tspan fill="#3a4256"> i</tspan><tspan fill="#5a6478">, </tspan><tspan fill="#3a4256">v </tspan><tspan fill="#5a6a90">:= </tspan><tspan fill="#7a5fb8" font-style="italic">range</tspan><tspan fill="#3a4256"> values</tspan><tspan fill="#5a6478"> {</tspan></text>
-    <text x="48" y="376"><tspan fill="#3a4256">        score </tspan><tspan fill="#5a6a90">+= </tspan><tspan fill="#3a4256">v </tspan><tspan fill="#5a6a90">* </tspan><tspan fill="#3a4256">math</tspan><tspan fill="#5a6478">.</tspan><tspan fill="#2c8fb0">Exp</tspan><tspan fill="#5a6478">(</tspan><tspan fill="#5a6a90">-</tspan><tspan fill="#9a7d1e">0.15</tspan><tspan fill="#5a6a90">*</tspan><tspan fill="#2c8fb0" font-style="italic">float64</tspan><tspan fill="#5a6478">(</tspan><tspan fill="#3a4256">i</tspan><tspan fill="#5a6478">))</tspan></text>
-    <text x="48" y="396"><tspan fill="#3a4256">    </tspan><tspan fill="#5a6478">}</tspan></text>
-    <text x="48" y="436"><tspan fill="#3a4256">    client </tspan><tspan fill="#5a6a90">:= &amp;</tspan><tspan fill="#bf6a3a">Client</tspan><tspan fill="#5a6478">{</tspan></text>
-    <text x="48" y="456"><tspan fill="#3a4256">        </tspan><tspan fill="#5a6a90">ID</tspan><tspan fill="#5a6478">:     </tspan><tspan fill="#3a4256">id</tspan><tspan fill="#5a6478">,</tspan></text>
-    <text x="48" y="476"><tspan fill="#3a4256">        </tspan><tspan fill="#5a6a90">Score</tspan><tspan fill="#5a6478">:  </tspan><tspan fill="#3a4256">math</tspan><tspan fill="#5a6478">.</tspan><tspan fill="#2c8fb0">Round</tspan><tspan fill="#5a6478">(</tspan><tspan fill="#3a4256">score</tspan><tspan fill="#5a6a90">*</tspan><tspan fill="#9a7d1e">100</tspan><tspan fill="#5a6478">) </tspan><tspan fill="#5a6a90">/ </tspan><tspan fill="#9a7d1e">100</tspan><tspan fill="#5a6478">,</tspan></text>
-    <text x="48" y="496"><tspan fill="#3a4256">        </tspan><tspan fill="#5a6a90">Active</tspan><tspan fill="#5a6478">: </tspan><tspan fill="#c05068" font-style="italic">true</tspan><tspan fill="#5a6478">,</tspan></text>
+    <text x="48" y="76"><tspan fill="#6e51b8" font-style="italic">type</tspan><tspan fill="#875935"> Client </tspan><tspan fill="#6e51b8" font-style="italic">struct</tspan><tspan fill="#505b72"> {</tspan></text>
+    <text x="48" y="96"><tspan fill="#323f59">    ID     </tspan><tspan fill="#875935" font-style="italic">string</tspan><tspan fill="#323f59">  </tspan><tspan fill="#376f47">`json:"id"`</tspan></text>
+    <text x="48" y="116"><tspan fill="#323f59">    Score  </tspan><tspan fill="#875935" font-style="italic">float64</tspan><tspan fill="#323f59"> </tspan><tspan fill="#376f47">`json:"score"`</tspan></text>
+    <text x="48" y="136"><tspan fill="#323f59">    Active </tspan><tspan fill="#875935" font-style="italic">bool</tspan><tspan fill="#323f59">    </tspan><tspan fill="#376f47">`json:"active"`</tspan></text>
+    <text x="48" y="156"><tspan fill="#505b72">}</tspan></text>
+    <text x="48" y="196"><tspan fill="#6e51b8" font-style="italic">const</tspan><tspan fill="#796027"> MaxRetries</tspan><tspan fill="#516489"> = </tspan><tspan fill="#796027">5</tspan></text>
+    <text x="48" y="236"><tspan fill="#586478" font-style="italic">// Register adds a client and computes its score.</tspan></text>
+    <text x="48" y="256"><tspan fill="#6e51b8" font-style="italic">func</tspan><tspan fill="#206b84"> Register</tspan><tspan fill="#505b72">(</tspan><tspan fill="#875935">id </tspan><tspan fill="#875935" font-style="italic">string</tspan><tspan fill="#505b72">, </tspan><tspan fill="#875935">values </tspan><tspan fill="#505b72">[]</tspan><tspan fill="#875935" font-style="italic">float64</tspan><tspan fill="#505b72">) (</tspan><tspan fill="#516489">*</tspan><tspan fill="#875935">Client</tspan><tspan fill="#505b72">, </tspan><tspan fill="#875935" font-style="italic">error</tspan><tspan fill="#505b72">) {</tspan></text>
+    <text x="48" y="276"><tspan fill="#323f59">    </tspan><tspan fill="#6e51b8" font-style="italic">if</tspan><tspan fill="#323f59"> id </tspan><tspan fill="#516489">== </tspan><tspan fill="#376f47">""</tspan><tspan fill="#505b72"> {</tspan></text>
+    <text x="48" y="296"><tspan fill="#323f59">        </tspan><tspan fill="#6e51b8" font-style="italic">return</tspan><tspan fill="#a24556" font-style="italic"> nil</tspan><tspan fill="#505b72">, </tspan><tspan fill="#323f59">fmt</tspan><tspan fill="#505b72">.</tspan><tspan fill="#206b84">Errorf</tspan><tspan fill="#505b72">(</tspan><tspan fill="#376f47">"client </tspan><tspan fill="#396c66">%q</tspan><tspan fill="#376f47"> invalid"</tspan><tspan fill="#505b72">, </tspan><tspan fill="#323f59">id</tspan><tspan fill="#505b72">)</tspan></text>
+    <text x="48" y="316"><tspan fill="#323f59">    </tspan><tspan fill="#505b72">}</tspan></text>
+    <text x="48" y="336"><tspan fill="#323f59">    score </tspan><tspan fill="#516489">:= </tspan><tspan fill="#796027">0.0</tspan></text>
+    <text x="48" y="356"><tspan fill="#323f59">    </tspan><tspan fill="#6e51b8" font-style="italic">for</tspan><tspan fill="#323f59"> i</tspan><tspan fill="#505b72">, </tspan><tspan fill="#323f59">v </tspan><tspan fill="#516489">:= </tspan><tspan fill="#6e51b8" font-style="italic">range</tspan><tspan fill="#323f59"> values</tspan><tspan fill="#505b72"> {</tspan></text>
+    <text x="48" y="376"><tspan fill="#323f59">        score </tspan><tspan fill="#516489">+= </tspan><tspan fill="#323f59">v </tspan><tspan fill="#516489">* </tspan><tspan fill="#323f59">math</tspan><tspan fill="#505b72">.</tspan><tspan fill="#206b84">Exp</tspan><tspan fill="#505b72">(</tspan><tspan fill="#516489">-</tspan><tspan fill="#796027">0.15</tspan><tspan fill="#516489">*</tspan><tspan fill="#206b84" font-style="italic">float64</tspan><tspan fill="#505b72">(</tspan><tspan fill="#323f59">i</tspan><tspan fill="#505b72">))</tspan></text>
+    <text x="48" y="396"><tspan fill="#323f59">    </tspan><tspan fill="#505b72">}</tspan></text>
+    <text x="48" y="436"><tspan fill="#323f59">    client </tspan><tspan fill="#516489">:= &amp;</tspan><tspan fill="#875935">Client</tspan><tspan fill="#505b72">{</tspan></text>
+    <text x="48" y="456"><tspan fill="#323f59">        </tspan><tspan fill="#516489">ID</tspan><tspan fill="#505b72">:     </tspan><tspan fill="#323f59">id</tspan><tspan fill="#505b72">,</tspan></text>
+    <text x="48" y="476"><tspan fill="#323f59">        </tspan><tspan fill="#516489">Score</tspan><tspan fill="#505b72">:  </tspan><tspan fill="#323f59">math</tspan><tspan fill="#505b72">.</tspan><tspan fill="#206b84">Round</tspan><tspan fill="#505b72">(</tspan><tspan fill="#323f59">score</tspan><tspan fill="#516489">*</tspan><tspan fill="#796027">100</tspan><tspan fill="#505b72">) </tspan><tspan fill="#516489">/ </tspan><tspan fill="#796027">100</tspan><tspan fill="#505b72">,</tspan></text>
+    <text x="48" y="496"><tspan fill="#323f59">        </tspan><tspan fill="#516489">Active</tspan><tspan fill="#505b72">: </tspan><tspan fill="#a24556" font-style="italic">true</tspan><tspan fill="#505b72">,</tspan></text>
   </g>
 
 </svg>
