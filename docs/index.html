@@ -82,7 +82,6 @@
 
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
 
-  /* fixed atmosphere */
   #stars { position: fixed; inset: 0; z-index: 0; display: block; pointer-events: none; }
 
   /* ---------- shared headings ---------- */
@@ -117,7 +116,6 @@
     border-top: 1px solid var(--border-soft);
   }
 
-  /* reveal on scroll */
   .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
   .reveal.in { opacity: 1; transform: none; }
 
@@ -193,6 +191,19 @@
   .hero-meta b { color: var(--fg-dim); font-weight: 500; }
   .hero-window { animation: rise 1.2s .4s var(--ease) both; }
 
+  .preview-toggle {
+    position: absolute; top: 26px; left: 28px; z-index: 3;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 13px; color: var(--fg-dim);
+    background: rgba(20,22,30,0.5); border: 1px solid var(--border);
+    border-radius: 999px; padding: 8px 14px 8px 12px; cursor: pointer;
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    animation: rise 1.1s .7s var(--ease) both;
+    transition: border-color .15s, color .15s;
+  }
+  .preview-toggle:hover { border-color: var(--cyan); color: var(--fg-bright); }
+  .preview-toggle .ic { width: 15px; height: 15px; display: block; }
+  .preview-toggle .k { color: var(--fg-faint); }
   .stars-badge {
     position: absolute; top: 26px; right: 28px; z-index: 3;
     display: inline-flex; align-items: center; gap: 9px;
@@ -240,10 +251,14 @@
     margin: 0; padding: 24px 26px;
     font-family: var(--mono); font-size: 13.5px; line-height: 1.8;
     overflow-x: auto; tab-size: 2;
-    background: var(--preview-bg); transition: background .4s ease;
+    color: var(--fg);
+    background: var(--preview-bg); transition: background .4s ease, color .4s ease;
   }
+  /* light preview flips ONLY pre.code tokens; the rule is generated from LIGHTMAP (see script) so light values live in one place. Window bg, titlebar, border, shadow stay dark. */
   pre.code:not(.active) { display: none; }
-  #codehost { min-height: 412px; }
+  /* fill the host so the code bg covers the full window body, whatever the snippet height */
+  #codehost { min-height: 412px; display: flex; flex-direction: column; }
+  #codehost pre.code.active { flex: 1 1 auto; }
   .code .ln { color: var(--fg-faint); user-select: none; display: inline-block; width: 2.4em; opacity: .6; }
   .code span[class^="c-"] { transition: opacity .3s ease, text-shadow .3s ease; }
   .code.spot span[class^="c-"] { opacity: 0.18; }
@@ -273,7 +288,6 @@
   .sl-ft { background: var(--selection); color: var(--sage); }
   .sl-pos { background: var(--cyan); color: #08131a; font-weight: 600; }
 
-  /* two-col showcase */
   .showcase { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: start; }
   .showcase .side h3 { font-size: 18px; color: var(--fg-bright); margin: 0 0 8px; }
   .showcase .side p { color: var(--fg-dim); font-size: 15px; margin: 0 0 28px; }
@@ -346,22 +360,19 @@
   #toast { position: fixed; left: 50%; bottom: 30px; transform: translateX(-50%) translateY(20px); background: var(--cyan); color: #08131a; font-family: var(--mono); font-size: 13px; font-weight: 600; padding: 10px 18px; border-radius: 9px; opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease; z-index: 50; }
   #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-  /* palette + local live preview */
   .pal-layout { display: grid; grid-template-columns: 1.55fr 1fr; gap: 34px; align-items: start; }
   .pal-preview { position: sticky; top: 28px; display: flex; flex-direction: column; gap: 12px; }
   .pal-preview pre.code { font-size: 12.5px; padding: 18px 20px; min-height: 0; }
   .pal-preview #palcode { min-height: 0; }
-  .reset-bg { align-self: flex-start; font-family: var(--mono); font-size: 11.5px; color: var(--fg-faint); background: none; border: 1px solid var(--border); border-radius: 7px; padding: 7px 13px; cursor: pointer; transition: color .15s, border-color .15s, opacity .15s; }
+  .reset-bg { align-self: flex-start; font-family: var(--mono); font-size: 11.5px; color: var(--fg-dim); background: color-mix(in srgb, var(--panel) 60%, transparent); border: 1px solid var(--border); border-radius: 7px; padding: 7px 13px; cursor: pointer; transition: color .15s, border-color .15s, opacity .15s; }
   .reset-bg:not(:disabled):hover { color: var(--cyan); border-color: var(--cyan); }
-  .reset-bg:disabled { opacity: 0.35; cursor: not-allowed; }
+  .reset-bg:disabled { opacity: 0.5; cursor: not-allowed; }
   .swatch.teach { animation: teachpulse 1.1s ease 2; }
   @keyframes teachpulse { 0%,100% { box-shadow: 0 0 0 0 rgba(128,200,224,0); } 50% { box-shadow: 0 0 0 4px rgba(128,200,224,0.4); border-color: var(--cyan); } }
 
-  /* blinking cursor */
   .cursor { display: inline-block; width: 7px; height: 1.05em; background: var(--cyan); vertical-align: -2px; margin-left: 3px; animation: blink 1.1s steps(1) infinite; }
   @keyframes blink { 50% { opacity: 0; } }
 
-  /* a11y contrast */
   .a11y-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(224px, 1fr)); gap: 12px; }
   .a11y { border: 1px solid var(--border); border-radius: 13px; overflow: hidden; background: var(--panel); }
   .a11y .demo { padding: 20px 18px; font-family: var(--mono); font-size: 15px; }
@@ -393,6 +404,10 @@
 <canvas id="stars" aria-hidden="true"></canvas>
 
 <header class="hero">
+  <button class="preview-toggle" id="previewToggle" type="button" aria-label="Preview the light or dark code variant">
+    <svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"></svg>
+    <span class="k">preview</span><span class="lbl">dark</span>
+  </button>
   <a class="stars-badge" href="https://github.com/Aejkatappaja/sora" target="_blank" rel="noopener" data-repo="Aejkatappaja/sora" aria-busy="true" aria-label="Star Sora on GitHub">
     <svg class="gh" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
     <span class="star" aria-hidden="true"></span>
@@ -443,9 +458,9 @@
             <span class="name">gitsigns · diff</span>
           </div>
           <pre class="code active" data-lang="diff"><span class="ln">14</span>  <span class="c-var">local</span> ok <span class="c-op">=</span> <span class="c-fn">pcall</span>(<span class="c-fn">require</span>, <span class="c-str">"sora"</span>)
-<span class="ln" style="color:#68b080">15</span> <span style="color:#68b080">+  vim.o.background = "dark"</span>
-<span class="ln" style="color:#68b080">16</span> <span style="color:#68b080">+  vim.cmd.colorscheme("sora")</span>
-<span class="ln" style="color:#b86068">17</span> <span style="color:#b86068">-  vim.cmd.colorscheme("default")</span>
+<span class="ln" style="color:var(--git-add)">15</span> <span style="color:var(--git-add)">+  vim.o.background = "dark"</span>
+<span class="ln" style="color:var(--git-add)">16</span> <span style="color:var(--git-add)">+  vim.cmd.colorscheme("sora")</span>
+<span class="ln" style="color:var(--git-delete)">17</span> <span style="color:var(--git-delete)">-  vim.cmd.colorscheme("default")</span>
 <span class="ln">18</span>  <span class="c-kw">return</span> ok</pre>
         </div>
       </div>
@@ -468,11 +483,11 @@
   <div class="wrap reveal">
     <p class="eyebrow">The palette</p>
     <h2>Twenty-one colors, one sky</h2>
-    <p class="lede">Click a <b style="color:var(--cyan)">syntax</b> color to spotlight it in the live sample. Click a <b style="color:var(--fg-bright)">background</b> to repaint the editor. Every value copies to your clipboard.</p>
+    <p class="lede">Click a <b style="color:var(--cyan)">syntax</b> color to spotlight it in the live sample, or a <b style="color:var(--fg-bright)">background</b> to repaint it. Every value copies to your clipboard.</p>
     <div class="pal-layout">
       <div id="pal"></div>
       <aside class="pal-preview">
-        <div class="window" id="palwindow">
+        <div class="window">
           <div class="titlebar">
             <span class="dot-btn" style="background:#c46c78"></span>
             <span class="dot-btn" style="background:#d4b878"></span>
@@ -734,8 +749,6 @@ end</div>
   });
 
   const palCode = document.getElementById("palcode");
-  const palWindow = document.getElementById("palwindow");
-  const DEFAULT_BG = "#0e1018";
   palCode.innerHTML = CODE.lua;
   /**
    * Remove the spotlight state from the live sample.
@@ -762,45 +775,89 @@ end</div>
   }
   const resetBtn = document.getElementById("resetbg");
   /**
-   * Set the live sample background and sync the reset control.
+   * Repaint the live sample to a chosen background, overriding the variant.
    * @param {string} hex
    * @returns {void}
    */
   function repaint(hex) {
-    palWindow.style.background = hex;
     palCode.style.background = hex;
-    resetBtn.disabled = hex.toLowerCase() === DEFAULT_BG.toLowerCase();
+    resetBtn.disabled = false;
   }
-  resetBtn.addEventListener("click", () => repaint(DEFAULT_BG));
-
+  // drop the inline override so the sample falls back to the variant's --preview-bg
+  function clearRepaint() {
+    palCode.style.background = "";
+    resetBtn.disabled = true;
+  }
+  resetBtn.addEventListener("click", clearRepaint);
+  // single source of the dark -> light mapping: drives both the swatches and the
+  // generated pre.code override below, so light values are never hand-copied.
+  const LIGHTMAP = {
+    "#0e1018":"#eceff4","#090b10":"#e3e7ef","#14161e":"#f5f7fb","#171a24":"#e2e6ee","#1e2430":"#d3dcea",
+    "#c8d0e0":"#3a4256","#dce4f0":"#2a3040","#9aa4b8":"#5a6478","#586478":"#8a93a6","#b4bcd0":"#454d63",
+    "#80c8e0":"#2c8fb0","#b0a0d8":"#7a5fb8","#90c8a0":"#3f9668","#d0909c":"#c05068",
+    "#d4b878":"#9a7d1e","#d0a888":"#bf6a3a","#78b8b0":"#2f8b82","#8898b8":"#5a6a90",
+    "#68b080":"#3f9668","#6898b8":"#3a7fb0","#b86068":"#c05068","#c8a860":"#b0801e",
+  };
+  // build the light-preview override from LIGHTMAP + the :root dark values, so the
+  // code windows and swatches flip from the same map (light preview needs JS anyway).
+  (function () {
+    const tokens = ["--preview-bg","--fg","--fg-bright","--fg-dim","--fg-faint","--cyan",
+      "--purple","--sage","--rose","--gold","--peach","--teal","--steel","--variable",
+      "--git-add","--git-change","--git-delete","--warning"];
+    const root = getComputedStyle(document.documentElement);
+    const decls = tokens.map(t => {
+      const light = LIGHTMAP[root.getPropertyValue(t).trim().toLowerCase()];
+      return light ? t + ":" + light : "";
+    }).filter(Boolean).join(";");
+    const el = document.createElement("style");
+    el.textContent = ':root[data-preview="light"] .window pre.code{' + decls + '}';
+    document.head.appendChild(el);
+  })();
+  function isLightPreview() { return document.documentElement.getAttribute("data-preview") === "light"; }
+  function hexFor(h) { return isLightPreview() ? (LIGHTMAP[h.toLowerCase()] || h) : h; }
   const pal = document.getElementById("pal");
-  PALETTE.forEach(g => {
-    const wrap = document.createElement("div");
-    wrap.className = "pal-group";
-    const h = document.createElement("h3");
-    h.textContent = g.group;
-    wrap.appendChild(h);
-    const grid = document.createElement("div");
-    grid.className = "swatches";
-    g.colors.forEach(([name, hex, meta]) => {
-      const b = document.createElement("button");
-      b.className = "swatch";
-      b.type = "button";
-      const roleTag = meta.role ? '<span class="tagrole">' + meta.role + '</span>' : (meta.bg ? '<span class="tagrole">bg</span>' : '');
-      b.innerHTML =
-        '<div class="chip" style="background:' + hex + '">' + roleTag + '</div>' +
-        '<div class="sname">' + name + '</div>' +
-        '<div class="shex">' + hex + '</div>';
-      b.addEventListener("click", () => {
-        copy(hex);
-        if (meta.bg) repaint(hex);
-        else if (meta.sel) spotlight(meta.sel);
+  /**
+   * Render the palette swatches for the previewed variant.
+   * @returns {void}
+   */
+  function renderPalette() {
+    pal.innerHTML = "";
+    PALETTE.forEach(g => {
+      const wrap = document.createElement("div");
+      wrap.className = "pal-group";
+      const h = document.createElement("h3");
+      h.textContent = g.group;
+      wrap.appendChild(h);
+      const grid = document.createElement("div");
+      grid.className = "swatches";
+      g.colors.forEach(([name, hex, meta]) => {
+        const c = hexFor(hex);
+        const b = document.createElement("button");
+        b.className = "swatch";
+        b.type = "button";
+        // dark chips (the bg roles) need a light tag, light chips a dark tag
+        const n = parseInt(c.slice(1), 16);
+        const lum = (0.299 * (n >> 16 & 255) + 0.587 * (n >> 8 & 255) + 0.114 * (n & 255)) / 255;
+        const ink = lum < 0.45 ? "rgba(236,239,244,0.5)" : "rgba(9,11,16,0.55)";
+        const tagStyle = ' style="color:' + ink + '"';
+        const label = meta.role || (meta.bg ? "bg" : null);
+        const roleTag = label ? '<span class="tagrole"' + tagStyle + '>' + label + '</span>' : '';
+        b.innerHTML =
+          '<div class="chip" style="background:' + c + '">' + roleTag + '</div>' +
+          '<div class="sname">' + name + '</div>' +
+          '<div class="shex">' + c + '</div>';
+        b.addEventListener("click", () => {
+          copy(c);
+          if (meta.bg) repaint(c);
+          else if (meta.sel) spotlight(meta.sel);
+        });
+        grid.appendChild(b);
       });
-      grid.appendChild(b);
+      wrap.appendChild(grid);
+      pal.appendChild(wrap);
     });
-    wrap.appendChild(grid);
-    pal.appendChild(wrap);
-  });
+  }
+  // initial render is owned by the preview-toggle IIFE, which sets the variant first
 
   const SVGNS = "http://www.w3.org/2000/svg";
   /**
@@ -1023,6 +1080,34 @@ end</div>
   }
   const starsBadge = document.querySelector(".stars-badge[data-repo]");
   if (starsBadge) loadStars(starsBadge);
+
+  /* preview toggle: flip only the code windows between the dark and light variant */
+  (function () {
+    const btn = document.getElementById("previewToggle");
+    if (!btn) return;
+    const ic = btn.querySelector(".ic");
+    const lbl = btn.querySelector(".lbl");
+    const SUN = "M12 7a5 5 0 100 10 5 5 0 000-10zm0-5a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm0 17a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM3 11h1a1 1 0 110 2H3a1 1 0 110-2zm17 0h1a1 1 0 110 2h-1a1 1 0 110-2zM5.3 5.3a1 1 0 011.4 0l.7.7A1 1 0 116 7.4l-.7-.7a1 1 0 010-1.4zm11.3 11.3a1 1 0 011.4 0l.7.7a1 1 0 11-1.4 1.4l-.7-.7a1 1 0 010-1.4zM18.7 5.3a1 1 0 010 1.4l-.7.7A1 1 0 1116.6 6l.7-.7a1 1 0 011.4 0zM7.4 16.6a1 1 0 010 1.4l-.7.7a1 1 0 11-1.4-1.4l.7-.7a1 1 0 011.4 0z";
+    const MOON = "M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z";
+    function sync() {
+      const light = isLightPreview();
+      lbl.textContent = light ? "dark" : "light";
+      ic.innerHTML = '<path d="' + (light ? MOON : SUN) + '"/>';
+    }
+    let v = null;
+    try { v = localStorage.getItem("sora-preview"); } catch (e) {}
+    document.documentElement.setAttribute("data-preview", v === "light" ? "light" : "dark");
+    sync();
+    renderPalette();
+    btn.addEventListener("click", () => {
+      const next = isLightPreview() ? "dark" : "light";
+      document.documentElement.setAttribute("data-preview", next);
+      try { localStorage.setItem("sora-preview", next); } catch (e) {}
+      clearRepaint();
+      sync();
+      renderPalette();
+    });
+  })();
 </script>
 </body>
 </html>
