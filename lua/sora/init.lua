@@ -1,6 +1,7 @@
 local M = {}
 
 M.config = {
+  variant = nil, -- "dark" | "light"; nil follows `:set background`, defaults to dark
   transparent = false,
   italic = true,
   italic_comments = true,
@@ -18,10 +19,16 @@ function M.load()
   end
   vim.g.colors_name = "sora"
   vim.o.termguicolors = true
-  vim.o.background = "dark"
 
   local palette = require("sora.palette")
-  local c = vim.deepcopy(palette.colors)
+  -- explicit `variant` wins; otherwise follow `:set background`, defaulting to dark
+  local variant = M.config.variant
+  if variant ~= "light" and variant ~= "dark" then
+    variant = vim.o.background == "light" and "light" or "dark"
+  end
+  vim.o.background = variant
+
+  local c = vim.deepcopy(palette[variant])
 
   M.config.on_colors(c)
 

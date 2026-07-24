@@ -78,6 +78,7 @@ Defaults - pass only what you want to change:
 
 ```lua
 require("sora").setup({
+  variant = nil,            -- "dark" | "light"; nil follows `:set background`, defaults to dark
   transparent = false,      -- transparent background (also strips float/statusline bg)
   italic = true,            -- italics globally
   italic_comments = true,   -- italics for comments (ignored if italic = false)

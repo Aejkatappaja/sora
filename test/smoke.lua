@@ -55,6 +55,20 @@ check("lualine theme loads", function()
   assert(theme.normal and theme.normal.a, "lualine theme malformed")
 end)
 
+-- Keep this last: it flips the variant to light for the rest of the process.
+-- Reset the on_* hooks since earlier checks leave overrides in the shared config.
+check("variant = light", function()
+  require("sora").setup({
+    variant = "light",
+    transparent = false,
+    on_colors = function() end,
+    on_highlights = function() end,
+  })
+  require("sora").load()
+  assert(vim.o.background == "light", "background not set to light")
+  assert(vim.api.nvim_get_hl(0, { name = "Normal" }).bg == 0xeceff4, "light background not applied")
+end)
+
 if #failures > 0 then
   print(("\n%d test(s) failed"):format(#failures))
   vim.cmd("cquit 1")
