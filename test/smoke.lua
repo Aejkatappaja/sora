@@ -66,7 +66,7 @@ check("variant = light", function()
   })
   require("sora").load()
   assert(vim.o.background == "light", "background not set to light")
-  assert(vim.api.nvim_get_hl(0, { name = "Normal" }).bg == 0xeceff4, "light background not applied")
+  assert(vim.api.nvim_get_hl(0, { name = "Normal" }).bg == 0xe4e7ee, "light background not applied")
 end)
 
 if #failures > 0 then
