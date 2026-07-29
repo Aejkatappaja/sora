@@ -22,3 +22,6 @@ jobs:
 
       - name: Smoke test
         run: nvim --headless --noplugin -u NONE -c "set rtp+=." -c "luafile test/smoke.lua"
+
+      - name: Extras color consistency
+        run: nvim --headless --noplugin -u NONE -c "set rtp+=." -c "luafile test/extras.lua"
