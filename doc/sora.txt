@@ -1,0 +1,156 @@
+*sora.txt*                     A Neovim colorscheme the color of the sky at dawn
+
+                        deep blue-black, cool silver
+                          one ethereal cyan
+
+==============================================================================
+CONTENTS                                                       *sora-contents*
+
+  1. Introduction ............................. |sora-introduction|
+  2. Requirements ............................. |sora-requirements|
+  3. Installation ............................. |sora-installation|
+  4. Configuration ............................ |sora-configuration|
+  5. Palette .................................. |sora-palette|
+  6. Supported plugins ........................ |sora-plugins|
+  7. Lualine .................................. |sora-lualine|
+  8. Extras ................................... |sora-extras|
+  9. Extending ................................ |sora-extending|
+
+==============================================================================
+1. INTRODUCTION                                            *sora-introduction*
+
+Sora is a dark colorscheme for Neovim, the color of the sky before dawn. The
+background is a near-black blue, deep enough for OLED. Syntax colors are muted
+but readable and never compete with each other.
+
+The signature is an ethereal cyan (`#80c8e0`) for functions. A single warm
+accent, gold (`#d4b878`) for constants and numbers, sits like a star against
+the cool palette. Eight named accents, each with a clear role.
+
+==============================================================================
+2. REQUIREMENTS                                            *sora-requirements*
+
+  - Neovim 0.9 or newer
+  - 'termguicolors' (sora enables it on load)
+  - A true-color terminal
+
+==============================================================================
+3. INSTALLATION                                            *sora-installation*
+
+With lazy.nvim: >lua
+    {
+      "Aejkatappaja/sora",
+      lazy = false,
+      priority = 1000,
+      opts = {},
+      config = function(_, opts)
+        require("sora").setup(opts)
+        vim.cmd("colorscheme sora")
+      end,
+    }
+<
+With packer.nvim: >lua
+    use {
+      "Aejkatappaja/sora",
+      config = function()
+        require("sora").setup()
+        vim.cmd("colorscheme sora")
+      end,
+    }
+<
+`require("sora").setup()` is optional; call it only to change defaults.
+`:colorscheme sora` applies the theme.
+
+==============================================================================
+4. CONFIGURATION                                          *sora-configuration*
+
+                                                               *sora.setup()*
+Defaults, pass only what you want to change: >lua
+    require("sora").setup({
+      transparent = false,     -- transparent background (also floats/statusline)
+      italic = true,           -- italics globally
+      italic_comments = true,  -- italics for comments (ignored if italic=false)
+      on_colors = function(colors) end,
+      on_highlights = function(highlights, colors) end,
+    })
+<
+                                                            *sora-transparent*
+`transparent`   When true, Normal, floats and the statusline get no background,
+                so the terminal shows through.
+
+                                                                 *sora-italic*
+`italic`        Italics for comments, keywords and other italic groups. When
+                false, nothing is italic.
+
+`italic_comments`
+                Italics for comments only. Ignored when `italic` is false.
+
+                                                              *sora-on_colors*
+`on_colors`     function(colors). Runs before the highlights are built, so
+                changing a palette key repaints every group that uses it: >lua
+                    on_colors = function(colors)
+                      colors.bg = "#000000"       -- pure black OLED
+                      colors.func = "#a0d8f0"     -- brighter functions
+                    end
+<
+                                                          *sora-on_highlights*
+`on_highlights` function(highlights, colors). Runs last and wins over
+                everything, for per-group control: >lua
+                    on_highlights = function(hl, colors)
+                      hl.Comment = { fg = colors.fg_comment, italic = true }
+                      hl.CursorLineNr = { fg = colors.cyan, bold = true }
+                    end
+<
+==============================================================================
+5. PALETTE                                                      *sora-palette*
+
+The palette lives in `lua/sora/palette.lua` and is the single source of
+truth. Core roles:
+
+    Background      #0e1018
+    Foreground      #c8d0e0
+    Cyan            #80c8e0   functions (the signature)
+    Purple          #b0a0d8   keywords
+    Sage            #90c8a0   strings
+    Rose            #d0909c   booleans, builtins
+    Gold            #d4b878   constants, numbers (the warm star)
+    Peach           #d0a888   types, constructors
+    Teal            #78b8b0   tags, regex
+    Steel           #8898b8   operators, properties
+
+==============================================================================
+6. SUPPORTED PLUGINS                                            *sora-plugins*
+
+Sora ships highlight groups for Treesitter and LSP semantic tokens, plus:
+telescope.nvim, nvim-cmp / blink.cmp, gitsigns.nvim, nvim-tree / neo-tree /
+oil.nvim, lualine.nvim, mini.statusline, indent-blankline / snacks.nvim,
+which-key.nvim, trouble.nvim, lazy.nvim / mason.nvim, noice.nvim /
+nvim-notify, flash.nvim, fzf-lua, render-markdown.nvim, dashboard-nvim and
+treesitter-context.
+
+==============================================================================
+7. LUALINE                                                      *sora-lualine*
+
+A lualine theme ships with the plugin: >lua
+    require("lualine").setup({
+      options = { theme = "sora" },
+    })
+<
+==============================================================================
+8. EXTRAS                                                        *sora-extras*
+
+One palette, everywhere. Ready-made configs for terminals, prompts, pagers
+and more live in `extras/` (Ghostty, Kitty, Alacritty, WezTerm, Foot, tmux,
+Starship, bat, delta, lazygit, yazi, btop, fzf, eza and others). Each folder
+holds a drop-in file; see the README for per-app install steps.
+
+==============================================================================
+9. EXTENDING                                                  *sora-extending*
+
+Prefer `on_colors` to change a color everywhere, and `on_highlights` to
+override specific groups. Both receive the resolved palette table, whose keys
+are the names in `lua/sora/palette.lua`. See |sora-on_colors| and
+|sora-on_highlights|.
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:
