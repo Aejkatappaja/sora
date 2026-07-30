@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.5.0](https://github.com/Aejkatappaja/sora/compare/v1.4.0...v1.5.0) (2026-07-30)
+
+
+### Features
+
+* **site:** feature the wallpaper themer on the landing page ([ccdb66e](https://github.com/Aejkatappaja/sora/commit/ccdb66e767dbfdccb93f9e1c420c125d99565927))
+* **site:** list Firefox Start on the landing ([3c5e302](https://github.com/Aejkatappaja/sora/commit/3c5e30201ebfb208bcfc9a1b7fc81ba309866f9e))
+* **site:** list Firefox Start page in the landing extras ([0707732](https://github.com/Aejkatappaja/sora/commit/0707732c75bb8fa3b124921ad2d9f48c91ae9579))
+* **themer:** add browser-based wallpaper recolorer ([e02fc2b](https://github.com/Aejkatappaja/sora/commit/e02fc2b15269b225039337efc4ec88ddd5bbceff))
+* wallpaper themer tool + landing section ([b7e88b5](https://github.com/Aejkatappaja/sora/commit/b7e88b55106e58115ef506bc6970cebff4bc2781))
+
 ## [1.4.0](https://github.com/Aejkatappaja/sora/compare/v1.3.0...v1.4.0) (2026-07-20)
 
 
