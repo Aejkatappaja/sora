@@ -505,6 +505,20 @@
     .clock { font-size: 64px; }
     .topbar { font-size: 10.5px; }
   }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f5f7fa; --bg-float: #ffffff; --bg-elev: #e8ecf1;
+      --bg-cursor: #dde3eb; --bg-sel: #d0d8e8; --border: #c8d0e0;
+      --fg: #1e2430; --fg-dim: #586478; --fg-bright: #0e1018;
+      --comment: #8898b8; --cyan: #2a8aa8; --purple: #6a5a98;
+      --sage: #4a9070; --rose: #a05060; --gold: #a89040;
+      --peach: #a88060; --teal: #4a8880; --steel: #5a7090;
+    }
+    .glow { opacity: 0.06; }
+    body::before { mix-blend-mode: multiply; opacity: 0.015; }
+    ::selection { background: #d0d8e8; color: #0e1018; }
+  }
 </style>
 </head>
 <body>
