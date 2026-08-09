@@ -17,10 +17,10 @@ function M.get(c)
     Removed    = { fg = c.git_delete },
 
     -- Telescope
-    TelescopeBorder        = { fg = c.border, bg = c.bg_float },
-    TelescopeNormal        = { fg = c.fg, bg = c.bg_float },
-    TelescopePromptBorder  = { fg = c.border, bg = c.bg_float },
-    TelescopePromptNormal  = { fg = c.fg, bg = c.bg_float },
+    TelescopeBorder        = { link = "FloatBorder" },
+    TelescopeNormal        = { link = "NormalFloat" },
+    TelescopePromptBorder  = { link = "FloatBorder" },
+    TelescopePromptNormal  = { link = "NormalFloat" },
     TelescopePromptPrefix  = { fg = c.accent },
     TelescopePromptTitle   = { fg = c.accent, bold = true },
     TelescopePreviewTitle  = { fg = c.sage, bold = true },
@@ -109,10 +109,10 @@ function M.get(c)
     -- Trouble
     TroubleText   = { fg = c.fg },
     TroubleCount  = { fg = c.accent, bold = true },
-    TroubleNormal = { fg = c.fg, bg = c.bg_float },
+    TroubleNormal = { link = "NormalFloat" },
 
     -- Nvim-tree
-    NvimTreeNormal      = { fg = c.fg, bg = c.bg_float },
+    NvimTreeNormal      = { link = "NormalFloat" },
     NvimTreeRootFolder  = { fg = c.cyan, bold = true },
     NvimTreeFolderName  = { fg = c.cyan },
     NvimTreeFolderIcon  = { fg = c.cyan },
@@ -126,8 +126,8 @@ function M.get(c)
     NvimTreeWinSeparator = { fg = c.border },
 
     -- Neo-tree
-    NeoTreeNormal       = { fg = c.fg, bg = c.bg_float },
-    NeoTreeNormalNC     = { fg = c.fg, bg = c.bg_float },
+    NeoTreeNormal       = { link = "NormalFloat" },
+    NeoTreeNormalNC     = { link = "NormalFloat" },
     NeoTreeDimText      = { fg = c.fg_dim },
     NeoTreeRootName     = { fg = c.cyan, bold = true },
     NeoTreeDirectoryName = { fg = c.cyan },
@@ -154,10 +154,10 @@ function M.get(c)
     MasonMutedBlock     = { fg = c.fg, bg = c.bg_elevated },
 
     -- Noice
-    NoiceCmdlinePopup       = { fg = c.fg, bg = c.bg_float },
+    NoiceCmdlinePopup       = { link = "NormalFloat" },
     NoiceCmdlinePopupBorder = { fg = c.border },
     NoiceCmdlineIcon        = { fg = c.cyan },
-    NoiceConfirm            = { fg = c.fg, bg = c.bg_float },
+    NoiceConfirm            = { link = "NormalFloat" },
     NoiceConfirmBorder      = { fg = c.border },
 
     -- Notify

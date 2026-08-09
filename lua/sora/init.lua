@@ -39,20 +39,26 @@ function M.load()
   end
 
   if M.config.transparent then
+    -- Only the groups that own a ground are listed. Everything a plugin points a
+    -- window at links to NormalFloat or FloatBorder, so it follows from here.
+    -- Pmenu is the exception on purpose: a see-through completion menu over code
+    -- is not readable, so it keeps its surface.
     local transparent_groups = {
       "Normal", "NormalNC", "NormalFloat", "SignColumn",
-      "FoldColumn", "TabLineFill", "StatusLine", "StatusLineNC",
-      "NvimTreeNormal", "NeoTreeNormal", "NeoTreeNormalNC",
-      "TreesitterContext",
+      "FoldColumn", "TabLine", "TabLineFill", "TabLineSel",
+      "StatusLine", "StatusLineNC", "TreesitterContext",
+      -- blink.cmp points its windows at its own groups rather than at the float
+      -- surfaces, so they cannot inherit and have to be named here.
+      "BlinkCmpMenu", "BlinkCmpMenuBorder", "BlinkCmpDoc", "BlinkCmpDocBorder",
+      -- ground only: a transparent float with no edge is a floating paragraph,
+      -- so the stroke FloatBorder declares stays.
+      "FloatBorder",
     }
     for _, name in ipairs(transparent_groups) do
       if highlights[name] then
         highlights[name].bg = "NONE"
       end
     end
-    highlights.WinSeparator = { fg = "NONE" }
-    highlights.VertSplit = { fg = "NONE" }
-    highlights.FloatBorder = { fg = "NONE", bg = "NONE" }
   end
 
   if not M.config.italic then
