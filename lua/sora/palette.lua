@@ -67,6 +67,18 @@ M.colors = {
   diff_delete_bg = "#1c1014",
   diff_text_bg   = "#1e2430",
 
+  -- Word level diff, a step above the line grounds above. Named here rather than
+  -- left as literals in extras/, which is what the generator renders from.
+  diff_add_emph     = "#142c1c",
+  diff_delete_emph  = "#2a1420",
+  diff_add_word     = "#163524",
+  diff_delete_word  = "#35161c",
+  diff_moved_add    = "#0d1f22",
+  diff_moved_delete = "#171426",
+
+  -- The row under the cursor in a list that is not a floating window
+  bg_selected = "#283448",
+
   -- Terminal
   terminal_black   = "#0e1018",
   terminal_red     = "#c46c78",
