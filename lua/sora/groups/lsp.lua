@@ -16,6 +16,7 @@ function M.get(c)
     DiagnosticInfo  = { fg = c.info },
     DiagnosticHint  = { fg = c.hint },
     DiagnosticOk    = { fg = c.ok },
+    DiagnosticDeprecated = { fg = c.fg_comment, strikethrough = true },
 
     DiagnosticSignError = { fg = c.error },
     DiagnosticSignWarn  = { fg = c.warning },

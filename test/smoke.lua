@@ -139,6 +139,33 @@ check("transparent = true keeps the strokes that draw an edge", function()
   end
 end)
 
+check("no group Neovim ships keeps a colour the palette does not define", function()
+  local sora = reload()
+  sora.setup()
+  sora.load()
+
+  local known = {}
+  for _, v in pairs(require("sora.palette").colors) do
+    if type(v) == "string" and v:match("^#%x%x%x%x%x%x$") then known[v:lower()] = true end
+  end
+
+  -- The internal error and the redraw debug surfaces keep Neovim's own colours:
+  -- they have to stay readable when the theme is the bug.
+  local checked = 0
+  for name, hl in pairs(vim.api.nvim_get_hl(0, {})) do
+    if name ~= "NvimInternalError" and not name:match("^RedrawDebug") then
+      for _, key in ipairs({ "fg", "bg", "sp" }) do
+        if type(hl[key]) == "number" then
+          checked = checked + 1
+          assert(known[("#%06x"):format(hl[key])],
+            ("%s sets %s to #%06x, which the palette does not define"):format(name, key, hl[key]))
+        end
+      end
+    end
+  end
+  assert(checked > 300, "only " .. checked .. " colours checked, expected hundreds")
+end)
+
 check("lualine theme loads", function()
   local theme = require("lualine.themes.sora")
   assert(theme.normal and theme.normal.a, "lualine theme malformed")
