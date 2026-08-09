@@ -4,6 +4,13 @@
 
 local failures = {}
 
+-- setup() merges into the live config, so options set by one check survive into
+-- the next. Anything that asserts on an option needs a clean module first.
+local function reload()
+  package.loaded["sora"] = nil
+  return require("sora")
+end
+
 local function check(name, fn)
   local ok, err = pcall(fn)
   if ok then
@@ -48,6 +55,87 @@ check("on_highlights override", function()
   })
   require("sora").load()
   assert(vim.api.nvim_get_hl(0, { name = "Normal" }).bg == 0x000000, "override not applied")
+end)
+
+-- A group that copies NormalFloat or FloatBorder renders identically and buys
+-- nothing, because every plugin already points its windows at those two. What it
+-- does buy is a pinned colour that `transparent = true` cannot strip, which is
+-- what used to leave Telescope, Trouble and Noice opaque over the terminal.
+-- Colour the two surfaces, and the windows follow.
+check("no group repeats a float surface, so plugin windows can inherit it", function()
+  local c = require("sora.palette").colors
+  local built = {}
+  for _, mod in ipairs({ "editor", "syntax", "treesitter", "lsp", "integrations" }) do
+    for name, hl in pairs(require("sora.groups." .. mod).get(c)) do built[name] = hl end
+  end
+
+  local function signature(hl)
+    local parts = {}
+    for _, key in ipairs({ "fg", "bg", "sp", "bold", "italic", "underline", "reverse", "link" }) do
+      if hl[key] ~= nil then parts[#parts + 1] = key .. "=" .. tostring(hl[key]) end
+    end
+    return table.concat(parts, " ")
+  end
+
+  local surfaces = { NormalFloat = true, FloatBorder = true }
+  local allowed = {
+    -- the completion menu stays painted on purpose: a see-through popup over
+    -- code is not readable
+    Pmenu = true,
+    -- names bg_statusline, which is the same hex as bg_float. It owns its ground
+    -- rather than inheriting one, and is stripped by name under transparent.
+    StatusLine = true,
+    -- blink.cmp points its windows at its own groups rather than at the float
+    -- surfaces, so they cannot inherit and have to pin a colour
+    BlinkCmpMenu = true, BlinkCmpMenuBorder = true,
+    BlinkCmpDoc = true, BlinkCmpDocBorder = true,
+  }
+
+  for name, hl in pairs(built) do
+    if not surfaces[name] and not allowed[name] then
+      for surface in pairs(surfaces) do
+        assert(signature(hl) ~= signature(built[surface]),
+          name .. " is a verbatim copy of " .. surface
+          .. ", which pins a colour transparent = true then cannot strip")
+      end
+    end
+  end
+end)
+
+check("transparent = true leaves no window surface painted", function()
+  local sora = reload()
+  sora.setup({ transparent = true })
+  sora.load()
+
+  local c = require("sora.palette").colors
+  local grounds = {}
+  for _, key in ipairs({ "bg", "bg_float", "bg_elevated" }) do
+    grounds[tonumber(c[key]:sub(2), 16)] = key
+  end
+
+  -- Anything a plugin points a window at ends in one of these. A ground surviving
+  -- here means the reader asked to see their terminal and got a panel instead.
+  for name, hl in pairs(vim.api.nvim_get_hl(0, {})) do
+    if hl.bg and grounds[hl.bg] and not name:match("^BlinkCmp") and not name:match("^Pmenu")
+      and (name:match("Normal$") or name:match("NormalNC$") or name:match("Float$")
+      or name:match("Border$") or name:match("Popup$") or name:match("^TabLine")) then
+      error(name .. " still paints " .. grounds[hl.bg] .. " under transparent = true")
+    end
+  end
+end)
+
+check("transparent = true keeps the strokes that draw an edge", function()
+  local sora = reload()
+  sora.setup({ transparent = true })
+  sora.load()
+
+  -- Stripped, not dropped: a transparent float with no border has no edge, and a
+  -- transparent split with no separator has no seam.
+  for _, name in ipairs({ "FloatBorder", "WinSeparator" }) do
+    local hl = vim.api.nvim_get_hl(0, { name = name, link = false })
+    assert(hl.bg == nil, name .. " keeps a background under transparent = true")
+    assert(hl.fg ~= nil, name .. " lost its stroke under transparent = true")
+  end
 end)
 
 check("lualine theme loads", function()
