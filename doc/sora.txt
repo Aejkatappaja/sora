@@ -75,8 +75,11 @@ Defaults, pass only what you want to change: >lua
     })
 <
                                                             *sora-transparent*
-`transparent`   When true, Normal, floats and the statusline get no background,
-                so the terminal shows through.
+`transparent`   When true, Normal, floats, sidebars, the tabline and the
+                statusline get no background, so the terminal shows through.
+                Borders and window separators keep their stroke: a float with
+                no edge has no shape. The completion menu keeps its background,
+                because a see-through popup over code is not readable.
 
                                                                  *sora-italic*
 `italic`        Italics for comments, keywords and other italic groups. When
