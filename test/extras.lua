@@ -15,14 +15,6 @@ for _, v in pairs(palette) do
   end
 end
 
--- Derived shades intentionally used by a few extras (diff backgrounds that are
--- blended, not raw palette colors). Update this list only alongside those files.
-for _, h in ipairs({
-  "#0d1f22", "#142c1c", "#163524", "#171426", "#283448", "#2a1420", "#35161c",
-}) do
-  valid[h] = true
-end
-
 local offenders = {}
 local function check(hex, file)
   if not valid[hex] then
@@ -52,8 +44,8 @@ end
 print("ok - every extra color matches the palette")
 
 -- The check above catches a colour that left the palette. This one catches what
--- it cannot see: a generated file edited by hand, or one nobody re-rendered. It
--- covers the surfaces the generator owns; the rest are still written by hand.
+-- it cannot see: a generated file edited by hand, or one nobody re-rendered.
+-- Every surface under extras/ is generated, so it covers all of them.
 local stale, generated = {}, 0
 for path, want in pairs(require("sora.extras").files()) do
   generated = generated + 1
