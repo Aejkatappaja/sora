@@ -6,7 +6,7 @@ function M.get(c)
     NormalNC     = { fg = c.fg, bg = c.bg },
     NormalFloat  = { fg = c.fg, bg = c.bg_float },
     FloatBorder  = { fg = c.border, bg = c.bg_float },
-    FloatTitle   = { fg = c.accent, bg = c.bg_float, bold = true },
+    FloatTitle   = { fg = c.accent, bold = true },
     WinBar       = { fg = c.fg_dim, bg = c.none },
     WinBarNC     = { fg = c.fg_gutter, bg = c.none },
 
