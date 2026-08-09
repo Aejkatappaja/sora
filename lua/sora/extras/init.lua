@@ -13,6 +13,7 @@ local M = {}
 
 local terminals = require("sora.extras.terminals")
 local tools = require("sora.extras.tools")
+local editors = require("sora.extras.editors")
 
 --- @type table<string, fun(): string>
 local FILES = {
@@ -38,6 +39,8 @@ local FILES = {
   ["extras/hunk/sora.toml"] = tools.hunk,
   ["extras/yazi/sora.toml"] = tools.yazi,
   ["extras/opencode/sora.json"] = tools.opencode,
+
+  ["extras/vim/sora.vim"] = editors.vim,
 }
 
 --- Every generated file, keyed by path relative to the repo root.
