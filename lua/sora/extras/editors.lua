@@ -1,7 +1,7 @@
 local M = {}
 
--- Other editors. The role map is the one lua/sora/groups/ uses, so a keyword is
--- purple here for the same reason it is purple there.
+-- The role map is the one lua/sora/groups/ uses, so a keyword is purple here for
+-- the same reason it is purple there.
 
 local palette = require("sora.palette")
 

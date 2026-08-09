@@ -1,8 +1,5 @@
 local M = {}
 
--- Terminals. Every file here is rendered from lua/sora/palette.lua and nothing
--- else, so a colour cannot be right in the editor and stale in a terminal.
-
 local palette = require("sora.palette")
 
 --- The sixteen ANSI slots, in the order every terminal below writes them.

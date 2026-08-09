@@ -1,8 +1,5 @@
 local M = {}
 
--- Pagers, prompts and TUIs. Same rule as the terminals: rendered from
--- lua/sora/palette.lua and nothing else.
-
 local palette = require("sora.palette")
 
 --- @return string
@@ -143,7 +140,6 @@ function M.eza()
 
   local lines = {}
   for i, s in ipairs(slots) do
-    -- every entry but the last carries the colon that separates them
     local tail = i == #slots and '"' or ':\\'
     lines[i] = ("%s=38;2;%s%s%s"):format(s[1], rgb(s[2]), s[3] or "", tail)
   end
