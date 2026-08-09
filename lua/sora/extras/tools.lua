@@ -464,6 +464,105 @@ punctuation = "%s"
 end
 
 --- @return string
+function M.yazi()
+  local c = palette.colors
+
+  local rules = {
+    { 'mime = "image/*"', c.peach }, { 'mime = "video/*"', c.gold },
+    { 'mime = "audio/*"', c.gold }, { 'mime = "application/zip"', c.purple },
+    { 'mime = "application/gzip"', c.purple },
+    { 'mime = "application/x-tar"', c.purple },
+    { 'mime = "application/x-bzip2"', c.purple },
+    { 'mime = "application/x-7z-compressed"', c.purple },
+    { 'mime = "application/x-rar"', c.purple },
+    { 'url = "*.rs"', c.peach }, { 'url = "*.lua"', c.accent },
+    { 'url = "*.ts"', c.accent }, { 'url = "*.js"', c.gold },
+    { 'url = "*.py"', c.sage }, { 'url = "*.go"', c.teal },
+    { 'url = "*.md"', c.fg_dim }, { 'url = "*.json"', c.gold },
+    { 'url = "*.toml"', c.peach }, { 'url = "*.yaml"', c.rose },
+    { 'url = "*.yml"', c.rose },
+  }
+  local lines = {}
+  for i, r in ipairs(rules) do
+    lines[i] = ('  { %s, fg = "%s" },'):format(r[1], r[2])
+  end
+
+  return ([[
+# Sora theme for Yazi
+# https://github.com/aejkatappaja/sora.nvim
+
+[manager]
+cwd = { fg = "%s" }
+hovered = { bg = "%s" }
+preview_hovered = { bg = "%s" }
+find_keyword = { fg = "%s", bold = true }
+find_position = { fg = "%s", italic = true }
+marker_selected = { fg = "%s", bg = "%s" }
+marker_copied = { fg = "%s", bg = "%s" }
+marker_cut = { fg = "%s", bg = "%s" }
+tab_active = { fg = "%s", bg = "%s" }
+tab_inactive = { fg = "%s", bg = "%s" }
+border_symbol = "│"
+border_style = { fg = "%s" }
+
+[status]
+separator_open = ""
+separator_close = ""
+separator_style = { fg = "%s", bg = "%s" }
+mode_normal = { fg = "%s", bg = "%s", bold = true }
+mode_select = { fg = "%s", bg = "%s", bold = true }
+mode_unset = { fg = "%s", bg = "%s", bold = true }
+progress_label = { fg = "%s" }
+progress_normal = { fg = "%s" }
+progress_error = { fg = "%s" }
+
+[input]
+border = { fg = "%s" }
+title = {}
+value = {}
+selected = { reversed = true }
+
+[select]
+border = { fg = "%s" }
+active = { fg = "%s" }
+inactive = {}
+
+[tasks]
+border = { fg = "%s" }
+title = {}
+hovered = { underline = true }
+
+[which]
+mask = { bg = "%s" }
+cand = { fg = "%s" }
+rest = { fg = "%s" }
+desc = { fg = "%s" }
+separator = "  "
+separator_style = { fg = "%s" }
+
+[help]
+on = { fg = "%s" }
+exec = { fg = "%s" }
+desc = { fg = "%s" }
+hovered = { bg = "%s", bold = true }
+footer = { fg = "%s", bg = "%s" }
+
+[filetype]
+rules = [
+%s
+]
+]]):format(c.accent, c.bg_selection, c.bg_elevated, c.gold, c.accent,
+    c.accent, c.accent, c.sage, c.sage, c.error, c.error,
+    c.fg, c.bg_elevated, c.fg_comment, c.bg_float, c.border,
+    c.bg_elevated, c.bg_elevated, c.bg, c.accent, c.bg, c.purple, c.bg, c.rose,
+    c.fg, c.border, c.error,
+    c.accent, c.accent, c.accent, c.accent,
+    c.bg_float, c.accent, c.fg_comment, c.fg_dim, c.border,
+    c.accent, c.fg_dim, c.fg_comment, c.bg_selection, c.fg_comment, c.bg_float,
+    table.concat(lines, "\n"))
+end
+
+--- @return string
 function M.herdr()
   local c = palette.colors
   return ([[

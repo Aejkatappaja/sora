@@ -36,6 +36,7 @@ local FILES = {
   ["extras/btop/sora.theme"] = tools.btop,
   ["extras/firefox/manifest.json"] = tools.firefox,
   ["extras/hunk/sora.toml"] = tools.hunk,
+  ["extras/yazi/sora.toml"] = tools.yazi,
 }
 
 --- Every generated file, keyed by path relative to the repo root.
