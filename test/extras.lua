@@ -48,7 +48,32 @@ if #offenders > 0 then
   for _, o in ipairs(offenders) do print("  " .. o) end
   print(("\n%d stale color(s) - regenerate the extra or update the palette"):format(#offenders))
   vim.cmd("cquit 1")
+end
+print("ok - every extra color matches the palette")
+
+-- The check above catches a colour that left the palette. This one catches what
+-- it cannot see: a generated file edited by hand, or one nobody re-rendered. It
+-- covers the surfaces the generator owns; the rest are still written by hand.
+local stale, generated = {}, 0
+for path, want in pairs(require("sora.extras").files()) do
+  generated = generated + 1
+  local fd = io.open(path, "r")
+  if not fd then
+    stale[#stale + 1] = path .. "  ->  missing, run scripts/extras.lua"
+  else
+    local got = fd:read("*a")
+    fd:close()
+    if got ~= want then stale[#stale + 1] = path .. "  ->  differs from a fresh render" end
+  end
+end
+
+if #stale > 0 then
+  print("\nGenerated files that no longer match lua/sora/palette.lua:")
+  for _, s in ipairs(stale) do print("  " .. s) end
+  print("\nRun: nvim --headless --noplugin -u NONE -c \"set rtp+=.\" "
+    .. "-c \"luafile scripts/extras.lua\" -c q")
+  vim.cmd("cquit 1")
 else
-  print("ok - every extra color matches the palette")
+  print(("ok - %d generated file(s) match a fresh render"):format(generated))
   vim.cmd("quitall")
 end
