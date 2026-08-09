@@ -33,6 +33,9 @@ local FILES = {
   ["extras/eza/sora.sh"] = tools.eza,
   ["extras/slack/sora.txt"] = tools.slack,
   ["extras/starship/sora.toml"] = tools.starship,
+  ["extras/btop/sora.theme"] = tools.btop,
+  ["extras/firefox/manifest.json"] = tools.firefox,
+  ["extras/hunk/sora.toml"] = tools.hunk,
 }
 
 --- Every generated file, keyed by path relative to the repo root.

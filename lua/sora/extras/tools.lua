@@ -251,6 +251,218 @@ style = "gold"
     c.warning)
 end
 
+--- Ordered rows rather than one positional template: btop takes sixty keys, and a
+--- line inserted in the middle of a format string shifts every colour after it.
+--- @return string
+function M.btop()
+  local c = palette.colors
+  local rows = {
+    "# Main background and text",
+    { "main_bg", c.bg }, { "main_fg", c.fg }, { "title", c.fg },
+    { "hi_fg", c.accent }, { "selected_bg", c.bg_selection },
+    { "selected_fg", c.fg_bright }, { "inactive_fg", c.fg_comment },
+    { "graph_text", c.fg_dim }, { "meter_bg", c.border },
+    "",
+    "# Graph colors",
+    { "proc_misc", c.accent }, { "cpu_box", c.accent }, { "mem_box", c.purple },
+    { "net_box", c.sage }, { "proc_box", c.peach }, { "div_line", c.border },
+    "",
+    "# Temperature",
+    { "temp_start", c.sage }, { "temp_mid", c.gold }, { "temp_end", c.error },
+    "",
+    "# CPU",
+    { "cpu_start", c.accent }, { "cpu_mid", c.purple }, { "cpu_end", c.rose },
+    "",
+    "# Free/cached/available memory",
+    { "free_start", c.sage }, { "free_mid", c.teal }, { "free_end", c.sage },
+    "",
+    { "cached_start", c.purple }, { "cached_mid", c.purple },
+    { "cached_end", c.terminal_bright_magenta },
+    "",
+    { "available_start", c.gold }, { "available_mid", c.peach },
+    { "available_end", c.gold },
+    "",
+    "# Used memory",
+    { "used_start", c.accent }, { "used_mid", c.purple }, { "used_end", c.rose },
+    "",
+    "# Download/Upload",
+    { "download_start", c.accent }, { "download_mid", c.terminal_bright_blue },
+    { "download_end", c.accent },
+    "",
+    { "upload_start", c.purple }, { "upload_mid", c.terminal_bright_magenta },
+    { "upload_end", c.purple },
+    "",
+    "# Process",
+    { "process_start", c.accent }, { "process_mid", c.teal },
+    { "process_end", c.sage },
+  }
+
+  local lines = {}
+  for i, row in ipairs(rows) do
+    lines[i] = type(row) == "string" and row or ('theme[%s]="%s"'):format(row[1], row[2])
+  end
+
+  return ([[
+# Sora theme for btop
+# https://github.com/aejkatappaja/sora.nvim
+
+%s
+]]):format(table.concat(lines, "\n"))
+end
+
+--- @return string
+function M.firefox()
+  local c = palette.colors
+  return ([[
+{
+  "manifest_version": 2,
+  "name": "Sora",
+  "short_name": "sora",
+  "version": "1.0.0",
+  "description": "Sora theme for Firefox — a moody dark palette with cyan accents.",
+  "author": "anton",
+  "homepage_url": "https://github.com/Aejkatappaja/sora",
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "sora@aejkatappaja.theme",
+      "strict_min_version": "60.0"
+    }
+  },
+
+  "theme": {
+    "colors": {
+      "frame":                       "%s",
+      "frame_inactive":              "%s",
+
+      "tab_background_text":         "%s",
+      "tab_text":                    "%s",
+      "tab_selected":                "%s",
+      "tab_line":                    "%s",
+      "tab_loading":                 "%s",
+      "tab_background_separator":    "%s",
+
+      "toolbar":                     "%s",
+      "toolbar_text":                "%s",
+      "toolbar_top_separator":       "%s",
+      "toolbar_bottom_separator":    "%s",
+      "toolbar_vertical_separator":  "%s",
+
+      "toolbar_field":               "%s",
+      "toolbar_field_text":          "%s",
+      "toolbar_field_border":        "%s",
+      "toolbar_field_focus":         "%s",
+      "toolbar_field_text_focus":    "%s",
+      "toolbar_field_border_focus":  "%s",
+      "toolbar_field_highlight":     "%s",
+      "toolbar_field_highlight_text":"%s",
+
+      "popup":                       "%s",
+      "popup_text":                  "%s",
+      "popup_border":                "%s",
+      "popup_highlight":             "%s",
+      "popup_highlight_text":        "%s",
+
+      "sidebar":                     "%s",
+      "sidebar_text":                "%s",
+      "sidebar_border":              "%s",
+      "sidebar_highlight":           "%s",
+      "sidebar_highlight_text":      "%s",
+
+      "bookmark_text":               "%s",
+      "button_background_active":    "%s",
+      "button_background_hover":     "%s",
+      "icons":                       "%s",
+      "icons_attention":             "%s",
+
+      "ntp_background":              "%s",
+      "ntp_text":                    "%s"
+    }
+  }
+}
+]]):format(c.bg_float, c.bg_float, c.fg_dim, c.fg_bright, c.bg, c.accent, c.gold,
+    c.border, c.bg, c.fg, c.bg_float, c.border, c.border, c.bg_elevated,
+    c.fg_bright, c.border, c.bg_cursorline, c.fg_bright, c.accent,
+    c.bg_selection, c.fg_bright, c.bg, c.fg, c.border, c.bg_selection,
+    c.fg_bright, c.bg_float, c.fg, c.border, c.bg_selection, c.fg_bright, c.fg,
+    c.bg_selection, c.bg_cursorline, c.fg_dim, c.gold, c.bg, c.fg)
+end
+
+--- @return string
+function M.hunk()
+  local c = palette.colors
+  return ([[
+# Sora theme for Hunk (https://github.com/modem-dev/hunk).
+# Install: copy into ~/.config/hunk/config.toml, or if you already keep a
+# config, merge the [custom_theme] block below and set `theme = "custom"`.
+
+theme = "custom"
+
+[custom_theme]
+base  = "github-dark-default"  # unset keys inherit from this built-in theme
+label = "Sora"
+
+background = "%s"
+panel      = "%s"
+panelAlt   = "%s"
+border     = "%s"
+accent     = "%s"
+accentMuted = "%s"
+text       = "%s"
+muted      = "%s"
+
+addedBg          = "%s"
+removedBg        = "%s"
+movedAddedBg     = "%s"
+movedRemovedBg   = "%s"
+contextBg        = "%s"
+addedContentBg   = "%s"
+removedContentBg = "%s"
+contextContentBg = "%s"
+addedSignColor   = "%s"
+removedSignColor = "%s"
+
+lineNumberBg = "%s"
+lineNumberFg = "%s"
+selectedHunk = "%s"
+
+badgeAdded   = "%s"
+badgeRemoved = "%s"
+badgeNeutral = "%s"
+
+fileNew       = "%s"
+fileDeleted   = "%s"
+fileRenamed   = "%s"
+fileModified  = "%s"
+fileUntracked = "%s"
+
+noteBorder          = "%s"
+noteBackground      = "%s"
+noteTitleBackground = "%s"
+noteTitleText       = "%s"
+
+[custom_theme.syntax]
+default     = "%s"
+keyword     = "%s"
+string      = "%s"
+comment     = "%s"
+number      = "%s"
+function    = "%s"
+property    = "%s"
+type        = "%s"
+variable    = "%s"
+operator    = "%s"
+punctuation = "%s"
+]]):format(c.bg, c.bg_float, c.bg_elevated, c.border, c.accent, c.steel, c.fg,
+    c.fg_dim, c.diff_add_bg, c.diff_delete_bg, c.diff_moved_add,
+    c.diff_moved_delete, c.bg, c.diff_add_word, c.diff_delete_word, c.bg,
+    c.git_add, c.git_delete, c.bg_float, c.fg_gutter_active, c.bg_selection,
+    c.git_add, c.git_delete, c.steel, c.git_add, c.git_delete, c.accent,
+    c.git_change, c.teal, c.purple, c.bg_elevated, c.bg_selection, c.fg_bright,
+    c.fg, c.purple, c.sage, c.fg_comment, c.gold, c.accent, c.steel, c.peach,
+    c.variable, c.steel, c.fg_dim)
+end
+
 --- @return string
 function M.herdr()
   local c = palette.colors
