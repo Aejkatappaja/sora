@@ -7,6 +7,8 @@ function M.get(c)
     NormalFloat  = { fg = c.fg, bg = c.bg_float },
     FloatBorder  = { fg = c.border, bg = c.bg_float },
     FloatTitle   = { fg = c.accent, bold = true },
+    FloatShadow        = { bg = c.bg_float, blend = 80 },
+    FloatShadowThrough = { bg = c.bg_float, blend = 100 },
     WinBar       = { fg = c.fg_dim, bg = c.none },
     WinBarNC     = { fg = c.fg_gutter, bg = c.none },
 
@@ -64,6 +66,7 @@ function M.get(c)
     Title        = { fg = c.accent, bold = true },
     ErrorMsg     = { fg = c.error },
     WarningMsg   = { fg = c.warning },
+    OkMsg        = { fg = c.ok },
     Conceal      = { fg = c.fg_dim },
     SpellBad     = { sp = c.error, undercurl = true },
     SpellCap     = { sp = c.warning, undercurl = true },

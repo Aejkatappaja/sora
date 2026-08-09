@@ -211,12 +211,12 @@ function M.get(c)
     DashboardShortCut = { fg = c.purple },
 
     -- Render-markdown
-    RenderMarkdownH1Bg  = { bg = "#141826" },
-    RenderMarkdownH2Bg  = { bg = "#14161e" },
-    RenderMarkdownH3Bg  = { bg = "#161820" },
-    RenderMarkdownH4Bg  = { bg = "#141a18" },
-    RenderMarkdownH5Bg  = { bg = "#181818" },
-    RenderMarkdownH6Bg  = { bg = "#181418" },
+    RenderMarkdownH1Bg  = { bg = c.heading_1_bg },
+    RenderMarkdownH2Bg  = { bg = c.heading_2_bg },
+    RenderMarkdownH3Bg  = { bg = c.heading_3_bg },
+    RenderMarkdownH4Bg  = { bg = c.heading_4_bg },
+    RenderMarkdownH5Bg  = { bg = c.heading_5_bg },
+    RenderMarkdownH6Bg  = { bg = c.heading_6_bg },
     RenderMarkdownCode  = { bg = c.bg_elevated },
 
     -- Oil

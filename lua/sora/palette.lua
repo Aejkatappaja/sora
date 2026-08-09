@@ -79,6 +79,14 @@ M.colors = {
   -- The row under the cursor in a list that is not a floating window
   bg_selected = "#283448",
 
+  -- One ground per heading level, each tinted toward the colour that level wears
+  heading_1_bg = "#141826",
+  heading_2_bg = "#14161e",
+  heading_3_bg = "#161820",
+  heading_4_bg = "#141a18",
+  heading_5_bg = "#181818",
+  heading_6_bg = "#181418",
+
   -- Terminal
   terminal_black   = "#0e1018",
   terminal_red     = "#c46c78",
