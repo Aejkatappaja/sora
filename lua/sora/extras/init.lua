@@ -37,6 +37,7 @@ local FILES = {
   ["extras/firefox/manifest.json"] = tools.firefox,
   ["extras/hunk/sora.toml"] = tools.hunk,
   ["extras/yazi/sora.toml"] = tools.yazi,
+  ["extras/opencode/sora.json"] = tools.opencode,
 }
 
 --- Every generated file, keyed by path relative to the repo root.

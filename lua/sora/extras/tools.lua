@@ -562,6 +562,113 @@ rules = [
     table.concat(lines, "\n"))
 end
 
+--- Every value under "theme" names a def above it, except syntaxVariable, which
+--- carries a literal. Kept as it was committed; worth making a def of its own.
+--- @return string
+function M.opencode()
+  local c = palette.colors
+  return ([[
+{
+  "$schema": "https://opencode.ai/theme.json",
+  "defs": {
+    "bg": "%s",
+    "bgFloat": "%s",
+    "bgElevated": "%s",
+    "bgCursorline": "%s",
+    "bgSelection": "%s",
+    "bgSearch": "%s",
+    "fg": "%s",
+    "fgDim": "%s",
+    "fgBright": "%s",
+    "fgComment": "%s",
+    "fgGutter": "%s",
+    "border": "%s",
+    "cyan": "%s",
+    "purple": "%s",
+    "sage": "%s",
+    "rose": "%s",
+    "gold": "%s",
+    "peach": "%s",
+    "teal": "%s",
+    "steel": "%s",
+    "error": "%s",
+    "warning": "%s",
+    "success": "%s",
+    "info": "%s",
+    "gitAdd": "%s",
+    "gitDelete": "%s",
+    "gitChange": "%s",
+    "diffAddBg": "%s",
+    "diffDeleteBg": "%s",
+    "diffChangeBg": "%s"
+  },
+  "theme": {
+    "primary": "cyan",
+    "secondary": "purple",
+    "accent": "gold",
+
+    "error": "error",
+    "warning": "warning",
+    "success": "success",
+    "info": "info",
+
+    "text": "fg",
+    "textMuted": "fgDim",
+
+    "background": "bg",
+    "backgroundPanel": "bgFloat",
+    "backgroundElement": "bgElevated",
+
+    "border": "border",
+    "borderActive": "cyan",
+    "borderSubtle": "border",
+
+    "diffAdded": "gitAdd",
+    "diffRemoved": "gitDelete",
+    "diffContext": "fgDim",
+    "diffHunkHeader": "purple",
+    "diffHighlightAdded": "sage",
+    "diffHighlightRemoved": "rose",
+    "diffAddedBg": "diffAddBg",
+    "diffRemovedBg": "diffDeleteBg",
+    "diffContextBg": "bg",
+    "diffLineNumber": "fgGutter",
+    "diffAddedLineNumberBg": "diffAddBg",
+    "diffRemovedLineNumberBg": "diffDeleteBg",
+
+    "markdownText": "fg",
+    "markdownHeading": "cyan",
+    "markdownLink": "cyan",
+    "markdownLinkText": "cyan",
+    "markdownCode": "sage",
+    "markdownBlockQuote": "fgDim",
+    "markdownEmph": "fgBright",
+    "markdownStrong": "fgBright",
+    "markdownHorizontalRule": "border",
+    "markdownListItem": "steel",
+    "markdownListEnumeration": "steel",
+    "markdownImage": "cyan",
+    "markdownImageText": "cyan",
+    "markdownCodeBlock": "sage",
+
+    "syntaxComment": "fgComment",
+    "syntaxKeyword": "purple",
+    "syntaxFunction": "cyan",
+    "syntaxVariable": "%s",
+    "syntaxString": "sage",
+    "syntaxNumber": "gold",
+    "syntaxType": "peach",
+    "syntaxOperator": "steel",
+    "syntaxPunctuation": "fgDim"
+  }
+}
+]]):format(c.bg, c.bg_float, c.bg_elevated, c.bg_cursorline, c.bg_selection,
+    c.bg_search, c.fg, c.fg_dim, c.fg_bright, c.fg_comment, c.fg_gutter,
+    c.border, c.cyan, c.purple, c.sage, c.rose, c.gold, c.peach, c.teal,
+    c.steel, c.error, c.warning, c.ok, c.info, c.git_add, c.git_delete,
+    c.git_change, c.diff_add_bg, c.diff_delete_bg, c.diff_change_bg, c.variable)
+end
+
 --- @return string
 function M.herdr()
   local c = palette.colors
