@@ -699,4 +699,207 @@ peach       = "%s"
     c.git_change, c.teal, c.peach)
 end
 
+--- @return string
+function M.bat()
+  local c = palette.colors
+
+  -- A TextMate theme. bat matches on scope selectors rather than on highlight
+  -- groups, so a rule can only be as precise as the scopes its syntaxes emit:
+  -- several roles that lua/sora/groups separates collapse onto one selector here.
+
+  --- The editor chrome, in the order Sublime writes it.
+  local globals = {
+    { "background", c.bg },
+    { "foreground", c.fg },
+    { "caret", c.accent },
+    { "selection", c.bg_selection },
+    { "selectionForeground", c.fg_bright },
+    { "lineHighlight", c.bg_cursorline },
+    { "invisibles", c.nontext },
+    { "gutter", c.bg },
+    { "gutterForeground", c.fg_gutter },
+    { "findHighlight", c.bg_search },
+    { "findHighlightForeground", c.fg_bright },
+    { "guide", c.guide },
+    { "activeGuide", c.guide_active },
+    { "stackGuide", c.guide },
+  }
+
+  --- section comment, rule name, scope selector, foreground, fontStyle.
+  --- A nil fontStyle omits the key; "" writes it empty, which is how a rule
+  --- cancels a style inherited from a broader selector.
+  local rules = {
+    { "Comments", "Comment", "comment, punctuation.definition.comment", c.fg_comment, "italic" },
+    { "Strings", "String", "string, punctuation.definition.string", c.string },
+    { "String escape", "String Escape", "constant.character.escape, string.regexp", c.regex, "bold" },
+    { "Numbers", "Number", "constant.numeric", c.gold },
+    { "Constants", "Constant", "constant, constant.language, constant.other", c.constant },
+    { "Boolean", "Boolean", "constant.language.boolean", c.rose, "italic" },
+    { "Variables", "Variable", "variable, variable.other", c.variable },
+    { "Built-in variables", "Variable Built-in", "variable.language", c.rose, "italic" },
+    { "Parameters", "Parameter", "variable.parameter", c.peach },
+    {
+      "Object properties / members",
+      "Member",
+      "variable.other.member, variable.other.property, variable.other.object.property",
+      c.steel,
+    },
+    { "Keywords", "Keyword", "keyword, keyword.control, keyword.other, storage.modifier", c.keyword, "italic" },
+    { "Keyword operator", "Keyword Operator", "keyword.operator", c.operator, "" },
+    {
+      "Operators",
+      "Operator",
+      "punctuation.accessor, keyword.operator.assignment, keyword.operator.arithmetic, "
+        .. "keyword.operator.logical, keyword.operator.bitwise, keyword.operator.comparison",
+      c.operator,
+    },
+    { "Storage / keyword.function", "Storage", "storage, storage.type", c.keyword, "italic" },
+    { "Functions", "Function", "entity.name.function, support.function, meta.function-call", c.func },
+    { "Built-in functions", "Function Built-in", "support.function.builtin", c.func, "italic" },
+    { "Macros", "Macro", "entity.name.function.macro, support.function.macro", c.teal, "bold" },
+    {
+      "Types",
+      "Type",
+      "entity.name.type, entity.name.class, entity.name.struct, entity.name.enum, entity.name.union, "
+        .. "entity.name.trait, entity.name.interface, support.type, support.class",
+      c.type,
+    },
+    {
+      "Built-in types",
+      "Type Built-in",
+      "support.type.builtin, storage.type.built-in, storage.type.primitive",
+      c.type,
+      "italic",
+    },
+    {
+      "Constructors",
+      "Constructor",
+      "entity.name.function.constructor, meta.method.constructor",
+      c.type,
+      "bold",
+    },
+    {
+      "Preprocessor / Include",
+      "Preprocessor",
+      "keyword.control.import, keyword.control.include, keyword.control.from, meta.preprocessor",
+      c.keyword,
+      "italic",
+    },
+    { "Tags (HTML/XML)", "Tag", "entity.name.tag", c.tag },
+    { "Tag attributes", "Tag Attribute", "entity.other.attribute-name", c.peach },
+    { "Tag delimiters", "Tag Delimiter", "punctuation.definition.tag", c.fg_dim },
+    {
+      "Punctuation / Delimiters",
+      "Punctuation",
+      "punctuation.separator, punctuation.terminator, punctuation.section",
+      c.fg_dim,
+    },
+    {
+      "Brackets",
+      "Bracket",
+      "punctuation.section.brackets, punctuation.section.parens, punctuation.section.braces, "
+        .. "punctuation.section.block, punctuation.section.group",
+      c.fg_dim,
+    },
+    {
+      "Annotations / Attributes / Decorators",
+      "Annotation",
+      "meta.annotation, variable.annotation, punctuation.definition.annotation",
+      c.peach,
+    },
+    { "Labels", "Label", "entity.name.label", c.teal },
+    {
+      "Modules / Namespaces",
+      "Module",
+      "entity.name.namespace, entity.name.module, support.other.module",
+      c.fg_dim,
+    },
+    {
+      "Exceptions",
+      "Exception",
+      "keyword.control.exception, keyword.control.trycatch, support.type.exception",
+      c.rose,
+    },
+    {
+      "Special / SpecialComment",
+      "Special Comment",
+      "comment.line.documentation, comment.block.documentation",
+      c.fg_comment,
+      "italic",
+    },
+    { "Markup headings", "Markup Heading", "markup.heading, punctuation.definition.heading", c.accent, "bold" },
+    { "Markup bold", "Markup Bold", "markup.bold", c.fg_bright, "bold" },
+    { "Markup italic", "Markup Italic", "markup.italic", c.fg_bright, "italic" },
+    { "Markup link", "Markup Link", "markup.underline.link, string.other.link", c.accent, "underline" },
+    { "Markup raw / code", "Markup Code", "markup.raw, markup.inline.raw", c.sage },
+    { "Markup quote", "Markup Quote", "markup.quote", c.fg_dim, "italic" },
+    { "Markup list", "Markup List", "markup.list, punctuation.definition.list", c.steel },
+    { "Diff added", "Diff Added", "markup.inserted, meta.diff.header.to-file", c.git_add },
+    { "Diff deleted", "Diff Deleted", "markup.deleted, meta.diff.header.from-file", c.git_delete },
+    { "Diff changed", "Diff Changed", "markup.changed", c.git_change },
+    { "Invalid", "Invalid", "invalid, invalid.illegal", c.error },
+    { "Deprecated", "Deprecated", "invalid.deprecated", c.rose, "italic" },
+  }
+
+  local blocks = {
+    [[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>name</key>
+  <string>Sora</string>
+  <key>semanticClass</key>
+  <string>theme.dark.sora</string>
+  <key>author</key>
+  <string>aejkatappaja</string>
+  <key>uuid</key>
+  <string>8A7844DC-8F22-4EC3-B288-CF514D5F3409</string>
+  <key>colorSpaceName</key>
+  <string>sRGB</string>
+  <key>settings</key>
+  <array>]],
+  }
+
+  local settings = {}
+  for _, kv in ipairs(globals) do
+    settings[#settings + 1] = ("        <key>%s</key>\n        <string>%s</string>"):format(kv[1], kv[2])
+  end
+  blocks[#blocks + 1] = ([[
+    <!-- Global settings -->
+    <dict>
+      <key>settings</key>
+      <dict>
+%s
+      </dict>
+    </dict>]]):format(table.concat(settings, "\n"))
+
+  for _, r in ipairs(rules) do
+    local section, name, scope, fg, style = r[1], r[2], r[3], r[4], r[5]
+    local body = ("        <key>foreground</key>\n        <string>%s</string>"):format(fg)
+    if style then
+      body = body .. ("\n        <key>fontStyle</key>\n        <string>%s</string>"):format(style)
+    end
+    blocks[#blocks + 1] = ([[
+    <!-- %s -->
+    <dict>
+      <key>name</key>
+      <string>%s</string>
+      <key>scope</key>
+      <string>%s</string>
+      <key>settings</key>
+      <dict>
+%s
+      </dict>
+    </dict>]]):format(section, name, scope, body)
+  end
+
+  blocks[#blocks + 1] = [[
+  </array>
+</dict>
+</plist>]]
+
+  return table.concat(blocks, "\n\n") .. "\n"
+end
+
 return M

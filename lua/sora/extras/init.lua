@@ -7,13 +7,13 @@ local M = {}
 -- test/extras.lua compares them against what is committed, which is what makes
 -- hand-editing a generated file a test failure instead of a silent divergence.
 --
--- Surfaces not listed yet are still maintained by hand. They are covered by the
--- palette membership check in the same test, which is weaker: it catches a colour
--- that left the palette, not a file nobody remembered to update.
+-- The list is every surface under extras/. Adding one means adding a builder
+-- here, not a file there.
 
 local terminals = require("sora.extras.terminals")
 local tools = require("sora.extras.tools")
 local editors = require("sora.extras.editors")
+local firefox_start = require("sora.extras.firefox_start")
 
 --- @type table<string, fun(): string>
 local FILES = {
@@ -39,6 +39,9 @@ local FILES = {
   ["extras/hunk/sora.toml"] = tools.hunk,
   ["extras/yazi/sora.toml"] = tools.yazi,
   ["extras/opencode/sora.json"] = tools.opencode,
+  ["extras/bat/sora.tmTheme"] = tools.bat,
+
+  ["extras/firefox-start/index.html"] = firefox_start.index,
 
   ["extras/vim/sora.vim"] = editors.vim,
   ["extras/helix/sora.toml"] = editors.helix,
