@@ -12,6 +12,7 @@ local M = {}
 -- that left the palette, not a file nobody remembered to update.
 
 local terminals = require("sora.extras.terminals")
+local tools = require("sora.extras.tools")
 
 --- @type table<string, fun(): string>
 local FILES = {
@@ -24,6 +25,14 @@ local FILES = {
   ["extras/tmux/tokyo-night-tmux-sora.sh"] = terminals.tokyo_night_tmux,
   ["extras/macos-terminal/sora.itermcolors"] = terminals.itermcolors,
   ["extras/macos-terminal/sora.terminal"] = terminals.macos_terminal,
+
+  ["extras/fzf/sora.sh"] = tools.fzf,
+  ["extras/delta/sora.gitconfig"] = tools.delta,
+  ["extras/lazygit/sora.yml"] = tools.lazygit,
+  ["extras/herdr/sora.toml"] = tools.herdr,
+  ["extras/eza/sora.sh"] = tools.eza,
+  ["extras/slack/sora.txt"] = tools.slack,
+  ["extras/starship/sora.toml"] = tools.starship,
 }
 
 --- Every generated file, keyed by path relative to the repo root.
