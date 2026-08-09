@@ -161,4 +161,131 @@ endif
     table.concat(terminal, "\n"))
 end
 
+--- Helix names its colours once and refers to them by name everywhere else, so
+--- only the palette block at the bottom carries a value.
+--- @return string
+function M.helix()
+  local c = palette.colors
+  local keys = {
+    "bg", "bg_float", "bg_elevated", "bg_cursorline", "bg_selection", "border",
+    "guide", "fg", "fg_dim", "fg_bright", "fg_comment", "fg_gutter",
+    "fg_gutter_active", "cyan", "purple", "sage", "rose", "gold", "peach",
+    "teal", "steel", "variable", "git_add", "git_change", "git_delete", "error",
+    "warning", "info", "hint",
+  }
+  local rows = {}
+  for i, k in ipairs(keys) do rows[i] = ('%s = "%s"'):format(k, c[k]) end
+
+  return ([[
+# Sora theme for Helix (https://helix-editor.com).
+# Install: copy to ~/.config/helix/themes/sora.toml, then set `theme = "sora"`
+# in ~/.config/helix/config.toml.
+
+# syntax
+"keyword" = "purple"
+"keyword.control" = "purple"
+"keyword.directive" = "teal"
+"operator" = "steel"
+"function" = "cyan"
+"function.builtin" = "cyan"
+"function.method" = "cyan"
+"function.macro" = "teal"
+"constructor" = "peach"
+"type" = "peach"
+"type.builtin" = "peach"
+"type.enum.variant" = "gold"
+"constant" = "gold"
+"constant.builtin" = "rose"
+"constant.numeric" = "gold"
+"constant.character" = "sage"
+"constant.character.escape" = "teal"
+"string" = "sage"
+"string.regexp" = "teal"
+"string.special" = "teal"
+"comment" = { fg = "fg_comment", modifiers = ["italic"] }
+"variable" = "variable"
+"variable.builtin" = "rose"
+"variable.parameter" = "fg"
+"variable.other.member" = "steel"
+"label" = "rose"
+"punctuation" = "fg_dim"
+"punctuation.delimiter" = "fg_dim"
+"punctuation.bracket" = "fg_dim"
+"tag" = "teal"
+"namespace" = "peach"
+"attribute" = "gold"
+"special" = "purple"
+
+# markup
+"markup.heading" = { fg = "cyan", modifiers = ["bold"] }
+"markup.bold" = { modifiers = ["bold"] }
+"markup.italic" = { modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.link.url" = { fg = "steel", modifiers = ["underlined"] }
+"markup.link.text" = "cyan"
+"markup.link.label" = "purple"
+"markup.raw" = "sage"
+"markup.list" = "gold"
+"markup.quote" = "fg_dim"
+
+# diff
+"diff.plus" = "git_add"
+"diff.minus" = "git_delete"
+"diff.delta" = "git_change"
+
+# ui
+"ui.background" = { bg = "bg" }
+"ui.background.separator" = "border"
+"ui.text" = "fg"
+"ui.text.focus" = "fg_bright"
+"ui.text.inactive" = "fg_comment"
+"ui.text.directory" = "cyan"
+"ui.cursor" = { fg = "bg", bg = "fg" }
+"ui.cursor.primary" = { fg = "bg", bg = "cyan" }
+"ui.cursor.match" = { fg = "gold", bg = "bg_selection" }
+"ui.linenr" = "fg_gutter"
+"ui.linenr.selected" = { fg = "fg_gutter_active", modifiers = ["bold"] }
+"ui.gutter" = { bg = "bg" }
+"ui.cursorline.primary" = { bg = "bg_cursorline" }
+"ui.cursorline.secondary" = { bg = "bg_cursorline" }
+"ui.selection" = { bg = "bg_selection" }
+"ui.selection.primary" = { bg = "bg_selection" }
+"ui.highlight" = { bg = "bg_selection" }
+"ui.statusline" = { fg = "fg_dim", bg = "bg_float" }
+"ui.statusline.inactive" = { fg = "fg_comment", bg = "bg_float" }
+"ui.statusline.normal" = { fg = "bg", bg = "cyan", modifiers = ["bold"] }
+"ui.statusline.insert" = { fg = "bg", bg = "sage", modifiers = ["bold"] }
+"ui.statusline.select" = { fg = "bg", bg = "purple", modifiers = ["bold"] }
+"ui.statusline.separator" = "border"
+"ui.bufferline" = { fg = "fg_dim", bg = "bg_float" }
+"ui.bufferline.active" = { fg = "fg_bright", bg = "bg_elevated" }
+"ui.bufferline.background" = { bg = "bg_float" }
+"ui.popup" = { fg = "fg", bg = "bg_elevated" }
+"ui.popup.info" = { fg = "fg_dim", bg = "bg_elevated" }
+"ui.window" = { fg = "border" }
+"ui.help" = { fg = "fg", bg = "bg_elevated" }
+"ui.menu" = { fg = "fg", bg = "bg_elevated" }
+"ui.menu.selected" = { fg = "fg_bright", bg = "bg_selection" }
+"ui.menu.scroll" = { fg = "fg_gutter", bg = "bg_float" }
+"ui.virtual.whitespace" = "fg_gutter"
+"ui.virtual.ruler" = { bg = "bg_elevated" }
+"ui.virtual.indent-guide" = "guide"
+"ui.virtual.inlay-hint" = { fg = "fg_comment", bg = "bg_elevated" }
+"ui.virtual.jump-label" = { fg = "gold", modifiers = ["bold"] }
+
+# diagnostics
+"diagnostic.error" = { underline = { color = "error", style = "curl" } }
+"diagnostic.warning" = { underline = { color = "warning", style = "curl" } }
+"diagnostic.info" = { underline = { color = "info", style = "curl" } }
+"diagnostic.hint" = { underline = { color = "hint", style = "curl" } }
+"error" = "error"
+"warning" = "warning"
+"info" = "info"
+"hint" = "hint"
+
+[palette]
+%s
+]]):format(table.concat(rows, "\n"))
+end
+
 return M

@@ -41,6 +41,7 @@ local FILES = {
   ["extras/opencode/sora.json"] = tools.opencode,
 
   ["extras/vim/sora.vim"] = editors.vim,
+  ["extras/helix/sora.toml"] = editors.helix,
 }
 
 --- Every generated file, keyed by path relative to the repo root.
