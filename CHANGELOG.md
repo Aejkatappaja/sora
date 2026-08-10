@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.7.0](https://github.com/Aejkatappaja/sora/compare/v1.6.0...v1.7.0) (2026-08-10)
+
+
+### Features
+
+* **extras:** render the Obsidian theme ([f99b366](https://github.com/Aejkatappaja/sora/commit/f99b366101fa00add032b2381b7f63e1bfbf7da7))
+* **extras:** render the Obsidian theme, and push it on release ([6378b61](https://github.com/Aejkatappaja/sora/commit/6378b613b7e607b005c8703d7ffa69ea7f937263))
+* **extras:** render the Zed extension ([9cb8485](https://github.com/Aejkatappaja/sora/commit/9cb8485d782854b26cb02557c216a47c5e8652b3))
+* **extras:** render the Zed extension from the palette ([a20f73e](https://github.com/Aejkatappaja/sora/commit/a20f73e9e593d4b459e98704acaad7a422d5918b))
+* **palette:** name the six dimmed ANSI colours Zed asks for ([564d024](https://github.com/Aejkatappaja/sora/commit/564d024bb89c79d4fb74cbe1d7dbb6a286fd05f0))
+
 ## [1.6.0](https://github.com/Aejkatappaja/sora/compare/v1.5.0...v1.6.0) (2026-08-10)
 
 
