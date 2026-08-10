@@ -11,6 +11,20 @@ local function reload()
   return require("sora")
 end
 
+local function luminance(hex)
+  local r, g, b = hex:match("^#(%x%x)(%x%x)(%x%x)$")
+  local function lin(v)
+    v = v / 255
+    return v <= 0.04045 and v / 12.92 or ((v + 0.055) / 1.055) ^ 2.4
+  end
+  return 0.2126 * lin(tonumber(r, 16)) + 0.7152 * lin(tonumber(g, 16)) + 0.0722 * lin(tonumber(b, 16))
+end
+
+local function ratio(a, b)
+  local la, lb = luminance(a), luminance(b)
+  return (math.max(la, lb) + 0.05) / (math.min(la, lb) + 0.05)
+end
+
 local function check(name, fn)
   local ok, err = pcall(fn)
   if ok then
@@ -164,6 +178,147 @@ check("no group Neovim ships keeps a colour the palette does not define", functi
     end
   end
   assert(checked > 300, "only " .. checked .. " colours checked, expected hundreds")
+end)
+
+local SYNTAX = {
+  "cyan", "purple", "sage", "rose", "gold", "peach", "teal", "steel", "variable",
+}
+local DIAGNOSTIC = { "error", "warning", "info", "hint", "ok" }
+
+check("one role, one hue: no two syntax colours share a hex", function()
+  local c = require("sora.palette").colors
+  local seen = {}
+  for _, name in ipairs(SYNTAX) do
+    local hex = c[name]
+    assert(not seen[hex], name .. " and " .. tostring(seen[hex]) .. " are both " .. hex)
+    seen[hex] = name
+  end
+end)
+
+check("no syntax colour collides with a diagnostic", function()
+  local c = require("sora.palette").colors
+  for _, d in ipairs(DIAGNOSTIC) do
+    for _, s in ipairs(SYNTAX) do
+      assert(c[d] ~= c[s], d .. " and " .. s .. " are the same colour, so a state reads as a token")
+    end
+  end
+end)
+
+check("the role map holds: every token lands on the colour the palette names", function()
+  local sora = reload()
+  sora.setup()
+  sora.load()
+  local c = require("sora.palette").colors
+
+  -- The map lua/sora/palette.lua documents beside each colour. A group that
+  -- ignores it will look wrong beside every other group, and the extras render
+  -- from the same roles, so a drift here reaches the terminal too.
+  local map = {
+    ["@keyword"] = "keyword", ["@keyword.function"] = "keyword",
+    ["@function"] = "func", ["@function.call"] = "func",
+    ["@string"] = "string", ["@string.regex"] = "string",
+    ["@number"] = "constant", ["@constant"] = "constant",
+    ["@boolean"] = "rose",
+    ["@type"] = "type", ["@constructor"] = "type", ["@variable.parameter"] = "type",
+    ["@variable"] = "variable", ["@property"] = "variable",
+    ["@operator"] = "operator",
+    ["@tag"] = "tag", ["@character.special"] = "tag",
+    ["@comment"] = "fg_comment",
+  }
+
+  for group, role in pairs(map) do
+    local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
+    assert(hl.fg, group .. " has no foreground")
+    local got = ("#%06x"):format(hl.fg)
+    assert(got == c[role],
+      ("%s is %s, but the map puts it on %s (%s)"):format(group, got, role, c[role]))
+  end
+end)
+
+check("the palette the README prints is the palette the module ships", function()
+  local fd = assert(io.open("README.md", "r"))
+  local body = fd:read("*a")
+  fd:close()
+  local c = require("sora.palette").colors
+
+  local rows = {
+    Background = "bg", Foreground = "fg", Cyan = "cyan", Purple = "purple",
+    Sage = "sage", Peach = "peach", Gold = "gold", Rose = "rose",
+    Teal = "teal", Steel = "steel",
+  }
+
+  local seen = 0
+  for label, swatch, hex in body:gmatch("|%s*%**([%a]+)%**%s*|%s*!%[%]%(([^%)]+)%)%s*|%s*`(#%x%x%x%x%x%x)`") do
+    local role = rows[label]
+    if role then
+      seen = seen + 1
+      assert(hex == c[role],
+        ("the README prints %s for %s, the module ships %s"):format(hex, label, c[role]))
+      -- The swatch is the same hex twice in a placehold.co URL, so a row can go
+      -- stale in the picture while the code beside it stays right.
+      local bare = hex:sub(2)
+      local _, count = swatch:gsub(bare, "")
+      assert(count == 2, "the " .. label .. " swatch does not paint " .. hex)
+    end
+  end
+  assert(seen == 10, "the README palette table has " .. seen .. " of 10 known rows")
+end)
+
+-- No ratio is published, so this fixes a floor rather than a number. The three
+-- exceptions carry their measured value: a change that makes one worse fails
+-- here instead of shipping.
+check("nothing readable goes under 4.5:1, and the three that do are named", function()
+  local c = require("sora.palette").colors
+  local grounds = { "bg", "bg_float", "bg_elevated" }
+
+  local exempt = {
+    -- meant to recede, and the only text that is
+    fg_comment = 3.0,
+    -- line numbers and signs, decoration rather than prose
+    fg_gutter = 1.7,
+    -- 4.44:1 over bg. Named rather than nudged, because the hue is published
+    git_delete = 4.2,
+  }
+
+  local readable = { "fg", "fg_bright", "fg_dim", "variable", "git_add", "git_change" }
+  for _, name in ipairs(SYNTAX) do readable[#readable + 1] = name end
+  for _, name in ipairs(DIAGNOSTIC) do readable[#readable + 1] = name end
+  for name in pairs(exempt) do readable[#readable + 1] = name end
+
+  for _, name in ipairs(readable) do
+    local worst = math.huge
+    for _, ground in ipairs(grounds) do
+      worst = math.min(worst, ratio(c[name], c[ground]))
+    end
+    local floor = exempt[name] or 4.5
+    assert(worst >= floor,
+      ("%s is %.2f:1 at worst, under the %.2f it is held to"):format(name, worst, floor))
+    if exempt[name] then
+      assert(worst < 4.5,
+        name .. " now clears 4.5:1, so drop it from the exceptions rather than keep the excuse")
+    end
+  end
+end)
+
+check("nothing conveys meaning through style alone", function()
+  local sora = reload()
+  sora.setup()
+  sora.load()
+
+  -- Bold, Italic and the markup underline are a style and nothing else: that is
+  -- the whole group. Everything else that leans on weight has to carry a colour
+  -- too, or it says nothing to a reader whose font has one face.
+  local style_only = { Bold = true, Italic = true, ["@markup.underline"] = true }
+
+  for name, hl in pairs(vim.api.nvim_get_hl(0, {})) do
+    if not style_only[name] and not name:match("^RedrawDebug") then
+      local styled = hl.bold or hl.italic or hl.underline or hl.undercurl or hl.reverse
+      if styled and not hl.link then
+        assert(hl.fg or hl.bg or hl.sp,
+          name .. " carries a style and no colour, so it reads as nothing")
+      end
+    end
+  end
 end)
 
 -- The next three read a tool's own source rather than its documentation page.
