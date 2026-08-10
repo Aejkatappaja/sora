@@ -1,0 +1,7 @@
+id = "sora-theme"
+name = "Sora"
+version = "0.1.1"
+schema_version = 1
+authors = ["aejkatappaja"]
+description = "A dark theme inspired by the sky above. Ethereal cyan, cool silver, deep OLED blacks."
+repository = "https://github.com/Aejkatappaja/sora"
