@@ -1,2 +1,6 @@
 # generated Neovim helptags
 doc/tags
+
+# A global ignore for `zed/` swallows this one. It is the published extension,
+# not editor state, and the registry reads it straight out of the repository.
+!extras/zed/
