@@ -25,8 +25,8 @@ M.colors = {
   rose      = "#d0909c",  -- booleans, builtins, exceptions
   gold      = "#d4b878",  -- constants, numbers - the warm "star"
   peach     = "#d0a888",  -- types, constructors
-  teal      = "#78b8b0",  -- tags, regex, escapes
-  steel     = "#8898b8",  -- operators, properties
+  teal      = "#78b8b0",  -- tags, special characters, escapes
+  steel     = "#8898b8",  -- operators
 
   -- Aliases for highlight groups
   keyword   = "#b0a0d8",
