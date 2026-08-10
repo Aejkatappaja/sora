@@ -321,6 +321,113 @@ check("nothing conveys meaning through style alone", function()
   end
 end)
 
+local function slurp(path)
+  local fd = assert(io.open(path, "r"), "cannot read " .. path)
+  local body = fd:read("*a")
+  fd:close()
+  return body
+end
+
+check("transparent = false keeps every ground painted", function()
+  local sora = reload()
+  sora.setup({ transparent = false })
+  sora.load()
+  for _, name in ipairs({ "Normal", "NormalFloat", "StatusLine", "Pmenu" }) do
+    assert(vim.api.nvim_get_hl(0, { name = name }).bg, name .. " has no background by default")
+  end
+end)
+
+check("every float edge is the same stroke", function()
+  local sora = reload()
+  sora.setup()
+  sora.load()
+
+  -- A window edge is chrome, so it is one colour everywhere. The notification
+  -- borders are the exception and the reason is the point: there the colour is
+  -- the severity, not the frame.
+  local want = ("#%06x"):format(vim.api.nvim_get_hl(0, { name = "FloatBorder" }).fg)
+  for name, hl in pairs(vim.api.nvim_get_hl(0, {})) do
+    if name:match("Border$") and hl.fg and not name:match("^Notify") then
+      assert(("#%06x"):format(hl.fg) == want,
+        name .. " draws its edge in #" .. ("%06x"):format(hl.fg) .. ", not " .. want)
+    end
+  end
+end)
+
+check("the landing page carries the same palette as the module", function()
+  local body = slurp("docs/index.html")
+  local c = require("sora.palette").colors
+
+  local seen = 0
+  -- [%w_], not %w: Lua leaves the underscore out, which would skip every
+  -- bg_float and git_add row in the table and check only the short names.
+  for key, hex in body:gmatch('%["([%w_]+)",%s*"(#%x%x%x%x%x%x)"') do
+    if c[key] then
+      seen = seen + 1
+      assert(hex:lower() == c[key]:lower(),
+        ("the page prints %s for %s, the module ships %s"):format(hex, key, c[key]))
+    end
+  end
+  assert(seen >= 20, "the page palette table has only " .. seen .. " rows the module knows")
+end)
+
+check("every path the landing page tells a reader to copy exists", function()
+  local body = slurp("docs/index.html")
+  local seen = 0
+  for path in body:gmatch("extras/[%w%._%-/]+") do
+    seen = seen + 1
+    assert(vim.uv.fs_stat(path), "the page points at " .. path .. ", which is not in the repo")
+  end
+  assert(seen >= 15, "the page names only " .. seen .. " paths under extras/")
+end)
+
+check("the surface count the landing page prints is what extras ships", function()
+  local body = slurp("docs/index.html")
+  local claimed = tonumber(body:match("(%d+) apps"))
+  assert(claimed, "the page no longer prints a count")
+
+  -- One directory per app. The row list on the page is longer, because it also
+  -- names Neovim itself and the surfaces that install from somewhere else.
+  local shipped = 0
+  for _, entry in ipairs(vim.fn.readdir("extras")) do
+    if vim.fn.isdirectory("extras/" .. entry) == 1 then shipped = shipped + 1 end
+  end
+  assert(claimed == shipped,
+    ("the page says %d apps, extras/ ships %d"):format(claimed, shipped))
+end)
+
+check("every section of the landing page is a unique deep link", function()
+  local body = slurp("docs/index.html")
+  local seen = {}
+  for id in body:gmatch('id="([%w%-]+)"') do
+    assert(not seen[id], "the page uses id=\"" .. id .. "\" twice, so one anchor cannot be reached")
+    seen[id] = true
+  end
+end)
+
+check("the help file defines a tag per section, and quotes the palette it ships", function()
+  local body = slurp("doc/sora.txt")
+
+  for name, tag in body:gmatch("%d+%. ([%w ]-) %.+ |(sora%-[%a%-]+)|") do
+    -- Plain find: a tag carries a hyphen, which is a quantifier in a pattern.
+    assert(body:find("*" .. tag .. "*", 1, true),
+      ("the contents list %s but nothing defines |%s|"):format(name, tag))
+  end
+
+  -- Hexes inside a >lua block are examples, and two of them are deliberately
+  -- not palette values: the on_colors sample overrides a colour to show that it
+  -- can be overridden.
+  local prose = body:gsub(">lua.-\n<", "")
+  local c = require("sora.palette").colors
+  local known = {}
+  for _, v in pairs(c) do
+    if type(v) == "string" and v:match("^#%x%x%x%x%x%x$") then known[v:lower()] = true end
+  end
+  for hex in prose:gmatch("#%x%x%x%x%x%x") do
+    assert(known[hex:lower()], "the help file quotes " .. hex .. ", which the palette does not define")
+  end
+end)
+
 -- The next three read a tool's own source rather than its documentation page.
 -- Every one of these tools ignores what it does not recognise instead of
 -- refusing it, so half a theme applies and nothing says which half. The drift
