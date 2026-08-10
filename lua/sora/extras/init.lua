@@ -15,6 +15,7 @@ local tools = require("sora.extras.tools")
 local editors = require("sora.extras.editors")
 local firefox_start = require("sora.extras.firefox_start")
 local zed = require("sora.extras.zed")
+local obsidian = require("sora.extras.obsidian")
 
 --- @type table<string, fun(): string>
 local FILES = {
@@ -47,6 +48,9 @@ local FILES = {
   ["extras/zed/themes/sora.json"] = zed.theme,
   ["extras/zed/extension.toml"] = zed.extension,
   ["extras/zed/LICENSE"] = zed.licence,
+
+  ["extras/obsidian/sora/theme.css"] = obsidian.theme,
+  ["extras/obsidian/sora/manifest.json"] = obsidian.manifest,
 
   ["extras/vim/sora.vim"] = editors.vim,
   ["extras/helix/sora.toml"] = editors.helix,
