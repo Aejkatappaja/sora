@@ -106,6 +106,15 @@ M.colors = {
   terminal_bright_cyan    = "#90d0c8",
   terminal_bright_white   = "#dce4f0",
 
+  -- Zed asks for a dimmed ANSI set that a terminal emulator does not. Its black
+  -- and white are bg_float and fg_dim; these six have no other home.
+  terminal_dim_red     = "#9a5660",
+  terminal_dim_green   = "#6a9878",
+  terminal_dim_yellow  = "#a89060",
+  terminal_dim_blue    = "#6098b0",
+  terminal_dim_magenta = "#8878a8",
+  terminal_dim_cyan    = "#588880",
+
   none = "NONE",
 }
 
