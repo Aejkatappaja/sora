@@ -459,9 +459,124 @@ punctuation = "%s"
     c.variable, c.steel, c.fg_dim)
 end
 
+--- Section and key names come from yazi's own preset theme, not from its docs.
+--- It renamed [manager] to [mgr] and [select] to [pick], and moved the tab, mode
+--- and hovered keys out into [tabs], [mode] and [indicator]. An unknown section
+--- is ignored rather than refused, so the retired spelling applied nothing and
+--- said nothing.
 --- @return string
 function M.yazi()
   local c = palette.colors
+
+  --- @param t table
+  --- @return string
+  local function style(t)
+    local parts = {}
+    if t.fg then parts[#parts + 1] = ('fg = "%s"'):format(t.fg) end
+    if t.bg then parts[#parts + 1] = ('bg = "%s"'):format(t.bg) end
+    if t.bold then parts[#parts + 1] = "bold = true" end
+    if t.italic then parts[#parts + 1] = "italic = true" end
+    return "{ " .. table.concat(parts, ", ") .. " }"
+  end
+
+  local sections = {
+    { "mgr", {
+      { "cwd", { fg = c.accent } },
+      { "find_keyword", { fg = c.gold, bold = true } },
+      { "find_position", { fg = c.accent, italic = true } },
+      { "symlink_target", { fg = c.fg_comment, italic = true } },
+      { "marker_copied", { fg = c.sage, bg = c.sage } },
+      { "marker_cut", { fg = c.error, bg = c.error } },
+      { "marker_marked", { fg = c.purple, bg = c.purple } },
+      { "marker_selected", { fg = c.accent, bg = c.accent } },
+      { "count_copied", { fg = c.bg, bg = c.sage } },
+      { "count_cut", { fg = c.bg, bg = c.error } },
+      { "count_selected", { fg = c.bg, bg = c.accent } },
+      { "border_style", { fg = c.border } },
+    } },
+    { "tabs", {
+      { "active", { fg = c.fg, bg = c.bg_elevated } },
+      { "inactive", { fg = c.fg_comment, bg = c.bg_float } },
+    } },
+    { "mode", {
+      { "normal_main", { fg = c.bg, bg = c.accent, bold = true } },
+      { "normal_alt", { fg = c.accent, bg = c.bg_elevated } },
+      { "select_main", { fg = c.bg, bg = c.purple, bold = true } },
+      { "select_alt", { fg = c.purple, bg = c.bg_elevated } },
+      { "unset_main", { fg = c.bg, bg = c.rose, bold = true } },
+      { "unset_alt", { fg = c.rose, bg = c.bg_elevated } },
+    } },
+    { "indicator", {
+      { "parent", { bg = c.bg_elevated } },
+      { "current", { bg = c.bg_selection } },
+      { "preview", { bg = c.bg_elevated } },
+    } },
+    { "status", {
+      { "overall", { fg = c.fg, bg = c.bg_elevated } },
+      { "perm_sep", { fg = c.fg_gutter } },
+      { "perm_type", { fg = c.teal } },
+      { "perm_read", { fg = c.gold } },
+      { "perm_write", { fg = c.rose } },
+      { "perm_exec", { fg = c.sage } },
+      { "progress_label", { fg = c.fg, bold = true } },
+      { "progress_normal", { fg = c.accent, bg = c.bg_elevated } },
+      { "progress_error", { fg = c.bg, bg = c.error } },
+    } },
+    { "which", {
+      { "mask", { bg = c.bg_float } },
+      { "cand", { fg = c.accent } },
+      { "rest", { fg = c.fg_comment } },
+      { "desc", { fg = c.fg_dim } },
+      { "separator_style", { fg = c.border } },
+    } },
+    { "confirm", {
+      { "border", { fg = c.accent } },
+      { "title", { fg = c.accent } },
+      { "body", { fg = c.fg } },
+      { "list", { fg = c.fg_dim } },
+      { "btn_yes", { fg = c.bg, bg = c.accent, bold = true } },
+      { "btn_no", { fg = c.fg_dim } },
+    } },
+    { "spot", {
+      { "border", { fg = c.accent } },
+      { "title", { fg = c.accent } },
+      { "tbl_col", { fg = c.teal } },
+      { "tbl_cell", { fg = c.bg, bg = c.accent } },
+    } },
+    { "notify", {
+      { "title_info", { fg = c.info } },
+      { "title_warn", { fg = c.warning } },
+      { "title_error", { fg = c.error } },
+    } },
+    { "pick", {
+      { "border", { fg = c.accent } },
+      { "active", { fg = c.accent, bold = true } },
+      { "inactive", { fg = c.fg_dim } },
+    } },
+    { "input", {
+      { "border", { fg = c.accent } },
+      { "title", { fg = c.accent } },
+      { "value", { fg = c.fg } },
+      { "selected", { bg = c.bg_selection } },
+    } },
+    { "cmp", {
+      { "border", { fg = c.accent } },
+      { "active", { fg = c.bg, bg = c.accent } },
+      { "inactive", { fg = c.fg_dim } },
+    } },
+    { "tasks", {
+      { "border", { fg = c.accent } },
+      { "title", { fg = c.accent } },
+      { "hovered", { fg = c.accent, bold = true } },
+    } },
+    { "help", {
+      { "on", { fg = c.accent } },
+      { "run", { fg = c.fg_dim } },
+      { "desc", { fg = c.fg_comment } },
+      { "hovered", { bg = c.bg_selection, bold = true } },
+      { "footer", { fg = c.fg_comment, bg = c.bg_float } },
+    } },
+  }
 
   local rules = {
     { 'mime = "image/*"', c.peach }, { 'mime = "video/*"', c.gold },
@@ -478,84 +593,28 @@ function M.yazi()
     { 'url = "*.toml"', c.peach }, { 'url = "*.yaml"', c.rose },
     { 'url = "*.yml"', c.rose },
   }
-  local lines = {}
-  for i, r in ipairs(rules) do
-    lines[i] = ('  { %s, fg = "%s" },'):format(r[1], r[2])
+
+  local out = {
+    "# Sora theme for Yazi",
+    "# https://github.com/aejkatappaja/sora.nvim",
+  }
+  for _, section in ipairs(sections) do
+    out[#out + 1] = ""
+    out[#out + 1] = ("[%s]"):format(section[1])
+    for _, kv in ipairs(section[2]) do
+      out[#out + 1] = ("%s = %s"):format(kv[1], style(kv[2]))
+    end
   end
 
-  return ([[
-# Sora theme for Yazi
-# https://github.com/aejkatappaja/sora.nvim
+  out[#out + 1] = ""
+  out[#out + 1] = "[filetype]"
+  out[#out + 1] = "rules = ["
+  for _, r in ipairs(rules) do
+    out[#out + 1] = ('  { %s, fg = "%s" },'):format(r[1], r[2])
+  end
+  out[#out + 1] = "]"
 
-[manager]
-cwd = { fg = "%s" }
-hovered = { bg = "%s" }
-preview_hovered = { bg = "%s" }
-find_keyword = { fg = "%s", bold = true }
-find_position = { fg = "%s", italic = true }
-marker_selected = { fg = "%s", bg = "%s" }
-marker_copied = { fg = "%s", bg = "%s" }
-marker_cut = { fg = "%s", bg = "%s" }
-tab_active = { fg = "%s", bg = "%s" }
-tab_inactive = { fg = "%s", bg = "%s" }
-border_symbol = "│"
-border_style = { fg = "%s" }
-
-[status]
-separator_open = ""
-separator_close = ""
-separator_style = { fg = "%s", bg = "%s" }
-mode_normal = { fg = "%s", bg = "%s", bold = true }
-mode_select = { fg = "%s", bg = "%s", bold = true }
-mode_unset = { fg = "%s", bg = "%s", bold = true }
-progress_label = { fg = "%s" }
-progress_normal = { fg = "%s" }
-progress_error = { fg = "%s" }
-
-[input]
-border = { fg = "%s" }
-title = {}
-value = {}
-selected = { reversed = true }
-
-[select]
-border = { fg = "%s" }
-active = { fg = "%s" }
-inactive = {}
-
-[tasks]
-border = { fg = "%s" }
-title = {}
-hovered = { underline = true }
-
-[which]
-mask = { bg = "%s" }
-cand = { fg = "%s" }
-rest = { fg = "%s" }
-desc = { fg = "%s" }
-separator = "  "
-separator_style = { fg = "%s" }
-
-[help]
-on = { fg = "%s" }
-exec = { fg = "%s" }
-desc = { fg = "%s" }
-hovered = { bg = "%s", bold = true }
-footer = { fg = "%s", bg = "%s" }
-
-[filetype]
-rules = [
-%s
-]
-]]):format(c.accent, c.bg_selection, c.bg_elevated, c.gold, c.accent,
-    c.accent, c.accent, c.sage, c.sage, c.error, c.error,
-    c.fg, c.bg_elevated, c.fg_comment, c.bg_float, c.border,
-    c.bg_elevated, c.bg_elevated, c.bg, c.accent, c.bg, c.purple, c.bg, c.rose,
-    c.fg, c.border, c.error,
-    c.accent, c.accent, c.accent, c.accent,
-    c.bg_float, c.accent, c.fg_comment, c.fg_dim, c.border,
-    c.accent, c.fg_dim, c.fg_comment, c.bg_selection, c.fg_comment, c.bg_float,
-    table.concat(lines, "\n"))
+  return table.concat(out, "\n") .. "\n"
 end
 
 --- Every value under "theme" names a def above it, except syntaxVariable, which
