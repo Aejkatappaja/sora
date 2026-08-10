@@ -50,6 +50,8 @@ function M.get(c)
     PmenuKindSel = { fg = c.purple, bg = c.bg_selection },
     PmenuExtra   = { fg = c.fg_dim, bg = c.bg_float },
     PmenuExtraSel = { fg = c.fg_dim, bg = c.bg_selection },
+    PmenuMatch    = { fg = c.accent, bg = c.bg_float, bold = true },
+    PmenuMatchSel = { fg = c.accent, bg = c.bg_selection, bold = true },
 
     Folded       = { fg = c.fg_comment, bg = c.bg_elevated },
 
