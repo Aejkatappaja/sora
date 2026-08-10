@@ -617,8 +617,8 @@ function M.yazi()
   return table.concat(out, "\n") .. "\n"
 end
 
---- Every value under "theme" names a def above it, except syntaxVariable, which
---- carries a literal. Kept as it was committed; worth making a def of its own.
+--- Every value under "theme" names a def above it. A literal would resolve to
+--- nothing and opencode would throw at load rather than at review.
 --- @return string
 function M.opencode()
   local c = palette.colors
@@ -646,6 +646,7 @@ function M.opencode()
     "peach": "%s",
     "teal": "%s",
     "steel": "%s",
+    "variable": "%s",
     "error": "%s",
     "warning": "%s",
     "success": "%s",
@@ -669,10 +670,12 @@ function M.opencode()
 
     "text": "fg",
     "textMuted": "fgDim",
+    "selectedListItemText": "fgBright",
 
     "background": "bg",
     "backgroundPanel": "bgFloat",
     "backgroundElement": "bgElevated",
+    "backgroundMenu": "bgFloat",
 
     "border": "border",
     "borderActive": "cyan",
@@ -709,7 +712,7 @@ function M.opencode()
     "syntaxComment": "fgComment",
     "syntaxKeyword": "purple",
     "syntaxFunction": "cyan",
-    "syntaxVariable": "%s",
+    "syntaxVariable": "variable",
     "syntaxString": "sage",
     "syntaxNumber": "gold",
     "syntaxType": "peach",
@@ -720,8 +723,8 @@ function M.opencode()
 ]]):format(c.bg, c.bg_float, c.bg_elevated, c.bg_cursorline, c.bg_selection,
     c.bg_search, c.fg, c.fg_dim, c.fg_bright, c.fg_comment, c.fg_gutter,
     c.border, c.cyan, c.purple, c.sage, c.rose, c.gold, c.peach, c.teal,
-    c.steel, c.error, c.warning, c.ok, c.info, c.git_add, c.git_delete,
-    c.git_change, c.diff_add_bg, c.diff_delete_bg, c.diff_change_bg, c.variable)
+    c.steel, c.variable, c.error, c.warning, c.ok, c.info, c.git_add,
+    c.git_delete, c.git_change, c.diff_add_bg, c.diff_delete_bg, c.diff_change_bg)
 end
 
 --- @return string
