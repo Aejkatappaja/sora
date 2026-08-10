@@ -1,5 +1,36 @@
 # Changelog
 
+## [1.6.0](https://github.com/Aejkatappaja/sora/compare/v1.5.0...v1.6.0) (2026-08-10)
+
+
+### Features
+
+* **extras:** render btop, the Firefox manifest and hunk ([a1a7d0b](https://github.com/Aejkatappaja/sora/commit/a1a7d0b101a6ed3b228bc3eb7708ced66f6d05ae))
+* **extras:** render fzf, delta, lazygit, herdr, eza, slack and starship ([09f2936](https://github.com/Aejkatappaja/sora/commit/09f29362fb8e9c4582acf0e31eedcd82af516c90))
+* **extras:** render the bat theme and the Firefox start page ([e25881a](https://github.com/Aejkatappaja/sora/commit/e25881a3fe1b99e5ebbef2da2e848074312c9dea))
+* **extras:** render the Helix theme ([7b8a62b](https://github.com/Aejkatappaja/sora/commit/7b8a62bd20a89368c497ec9fbb435b1c7bb3a2f4))
+* **extras:** render the opencode theme ([1ab8650](https://github.com/Aejkatappaja/sora/commit/1ab8650766d6a1afac1f86832649b48e18f1dc15))
+* **extras:** render the surfaces from the palette ([cfd8bc4](https://github.com/Aejkatappaja/sora/commit/cfd8bc46afed25feeeaa6da7efb3af56953d50c4))
+* **extras:** render the terminal surfaces from the palette ([659f726](https://github.com/Aejkatappaja/sora/commit/659f726b7d64d140321d927a837f104ed0bd96b7))
+* **extras:** render the Vim colorscheme ([ad7cd67](https://github.com/Aejkatappaja/sora/commit/ad7cd67de70fce2df107f4ec2ae2fc680b6fb96c))
+* **extras:** render the yazi theme ([3f5be94](https://github.com/Aejkatappaja/sora/commit/3f5be94d9c03e66cbc78aa01aa4a955c0d4d329b))
+* **hunk:** write the scope table its successor reads ([e5bebbf](https://github.com/Aejkatappaja/sora/commit/e5bebbfb3e958ed3d6f1df480fdcfb1786e2cf8b))
+
+
+### Bug Fixes
+
+* **groups:** give the completion menu's match a colour ([f5e1420](https://github.com/Aejkatappaja/sora/commit/f5e14205fbe35799c38491ddf907eb87b5fa5cad))
+* **groups:** inherit the float surface instead of copying it ([63485ed](https://github.com/Aejkatappaja/sora/commit/63485ed8d87a36ea8a50c42e7cf98d08982aabb5))
+* **opencode:** fill the two slots that fell back silently ([0758222](https://github.com/Aejkatappaja/sora/commit/07582221e4df1ee1429f119ac1fb1d63456cefad))
+* **palette:** name the six colours that lived outside it ([ea09819](https://github.com/Aejkatappaja/sora/commit/ea09819cf3178fe04035090f600dc211077f255c))
+* **site:** the landing page showed a background sora does not ship ([d1e0fc2](https://github.com/Aejkatappaja/sora/commit/d1e0fc226e8a06ad367b9e4f149fe86fabce8b09))
+* six colours lived outside the palette, and four groups kept Neovim's ([45d2972](https://github.com/Aejkatappaja/sora/commit/45d29726c5f9f4a369825550df2d7d22429e0776))
+* three tools were reading a schema the themes no longer matched ([d1b26a2](https://github.com/Aejkatappaja/sora/commit/d1b26a269a8769809a6b2152bfc95757a32011fd))
+* transparent = true left plugin windows painted and erased edges ([415c38e](https://github.com/Aejkatappaja/sora/commit/415c38eecf2ed1ad088c668cb45f25e0c3ae65d5))
+* **transparent:** match the Pmenu and BlinkCmp families by prefix ([25acee9](https://github.com/Aejkatappaja/sora/commit/25acee973921b5d1e604d0d9c200b781b5831595))
+* **transparent:** strip grounds, not the strokes that draw an edge ([fddcd27](https://github.com/Aejkatappaja/sora/commit/fddcd2730b045ae9e9d77d4c0d2928903d113d25))
+* **yazi:** use the section names yazi still reads ([b67d251](https://github.com/Aejkatappaja/sora/commit/b67d251b124e85399a3b0e1e8833261775380991))
+
 ## [1.5.0](https://github.com/Aejkatappaja/sora/compare/v1.4.0...v1.5.0) (2026-07-30)
 
 
