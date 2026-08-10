@@ -25,6 +25,13 @@ end
 for _, f in ipairs(vim.fn.glob("extras/**/*", false, true)) do
   if vim.fn.isdirectory(f) == 0 then
     for _, line in ipairs(vim.fn.readfile(f)) do
+      -- Zed writes the alpha into the hex. The colour is the rgb half, and
+      -- #00000000 is its transparent rather than a colour anyone chose, so it
+      -- is dropped before the six-digit scan reads its first six zeros.
+      line = line:gsub("#(%x%x%x%x%x%x)(%x%x)%f[%W]", function(rgb, alpha)
+        if rgb:lower() == "000000" and alpha == "00" then return "" end
+        return "#" .. rgb
+      end)
       for form in line:gmatch("#%x%x%x%x%x%x") do   -- #rrggbb
         check(form:lower(), f)
       end
