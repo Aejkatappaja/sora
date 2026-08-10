@@ -449,6 +449,33 @@ type        = "%s"
 variable    = "%s"
 operator    = "%s"
 punctuation = "%s"
+
+[custom_theme.syntax_scopes]
+"source" = "%s"
+"comment" = "%s"
+"punctuation.definition.comment" = "%s"
+"keyword" = "%s"
+"keyword.control" = "%s"
+"storage" = "%s"
+"storage.type" = "%s"
+"storage.modifier" = "%s"
+"keyword.operator" = "%s"
+"punctuation" = "%s"
+"string" = "%s"
+"constant.numeric" = "%s"
+"constant.language" = "%s"
+"entity.name.function" = "%s"
+"support.function" = "%s"
+"variable.function" = "%s"
+"entity.name.type" = "%s"
+"entity.name.class" = "%s"
+"support.type" = "%s"
+"support.class" = "%s"
+"variable" = "%s"
+"variable.other.constant" = "%s"
+"variable.other.property" = "%s"
+"support.variable.property" = "%s"
+"variable.parameter" = "%s"
 ]]):format(c.bg, c.bg_float, c.bg_elevated, c.border, c.accent, c.steel, c.fg,
     c.fg_dim, c.diff_add_bg, c.diff_delete_bg, c.diff_moved_add,
     c.diff_moved_delete, c.bg, c.diff_add_word, c.diff_delete_word, c.bg,
@@ -456,7 +483,11 @@ punctuation = "%s"
     c.git_add, c.git_delete, c.steel, c.git_add, c.git_delete, c.accent,
     c.git_change, c.teal, c.purple, c.bg_elevated, c.bg_selection, c.fg_bright,
     c.fg, c.purple, c.sage, c.fg_comment, c.gold, c.accent, c.steel, c.peach,
-    c.variable, c.steel, c.fg_dim)
+    c.variable, c.steel, c.fg_dim,
+    c.fg, c.fg_comment, c.fg_comment, c.keyword, c.keyword, c.keyword,
+    c.keyword, c.keyword, c.operator, c.fg_dim, c.string, c.gold, c.gold,
+    c.func, c.func, c.func, c.type, c.type, c.type, c.type, c.variable,
+    c.variable, c.steel, c.steel, c.peach)
 end
 
 --- Section and key names come from yazi's own preset theme, not from its docs.
