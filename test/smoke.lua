@@ -166,6 +166,119 @@ check("no group Neovim ships keeps a colour the palette does not define", functi
   assert(checked > 300, "only " .. checked .. " colours checked, expected hundreds")
 end)
 
+-- The next three read a tool's own source rather than its documentation page.
+-- Every one of these tools ignores what it does not recognise instead of
+-- refusing it, so half a theme applies and nothing says which half. The drift
+-- check cannot see it: regenerating only makes the file agree with itself.
+
+check("the opencode theme fills every colour its Theme type declares", function()
+  local body = require("sora.extras").files()["extras/opencode/sora.json"]
+  assert(body, "missing extras/opencode/sora.json")
+
+  -- Every RGBA field of the Theme type in opencode's tui package. Its ThemeJson
+  -- requires all but two, and those two fall back rather than fail, so a gap is
+  -- invisible: the selected row's text silently becomes the background and the
+  -- menu silently becomes backgroundElement. The published docs list neither.
+  local slots = {
+    "primary", "secondary", "accent", "error", "warning", "success", "info",
+    "text", "textMuted", "selectedListItemText", "background", "backgroundPanel",
+    "backgroundElement", "backgroundMenu", "border", "borderActive", "borderSubtle",
+    "diffAdded", "diffRemoved", "diffContext", "diffHunkHeader",
+    "diffHighlightAdded", "diffHighlightRemoved", "diffAddedBg", "diffRemovedBg",
+    "diffContextBg", "diffLineNumber", "diffAddedLineNumberBg",
+    "diffRemovedLineNumberBg", "markdownText", "markdownHeading", "markdownLink",
+    "markdownLinkText", "markdownCode", "markdownBlockQuote", "markdownEmph",
+    "markdownStrong", "markdownHorizontalRule", "markdownListItem",
+    "markdownListEnumeration", "markdownImage", "markdownImageText",
+    "markdownCodeBlock", "syntaxComment", "syntaxKeyword", "syntaxFunction",
+    "syntaxVariable", "syntaxString", "syntaxNumber", "syntaxType",
+    "syntaxOperator", "syntaxPunctuation",
+  }
+
+  local defs, named = {}, {}
+  for name in body:match('"defs": {(.-)\n  }'):gmatch('"([%w]+)":') do defs[name] = true end
+  for name, ref in body:match('"theme": {(.-)\n  }'):gmatch('"([%w]+)": "([^"]+)"') do
+    named[name] = true
+    -- A literal would resolve to nothing, and opencode throws at load rather
+    -- than at review.
+    assert(defs[ref], "opencode points " .. name .. " at " .. ref .. ", which is not a def")
+  end
+
+  for _, slot in ipairs(slots) do
+    assert(named[slot], "opencode leaves " .. slot .. " to its own fallback")
+  end
+
+  assert(body:match('"diffAddedBg": "([^"]+)"') ~= body:match('"diffRemovedBg": "([^"]+)"'),
+    "opencode gives added and removed rows the same ground")
+end)
+
+check("the hunk theme fills every slot hunk reads, and none it does not", function()
+  local body = require("sora.extras").files()["extras/hunk/sora.toml"]
+  assert(body, "missing extras/hunk/sora.toml")
+
+  -- CUSTOM_THEME_COLOR_KEYS in hunk's config parser. The parser iterates that
+  -- constant, so anything else is dropped without a word.
+  local slots = {
+    "background", "panel", "panelAlt", "border", "accent", "accentMuted", "text",
+    "muted", "addedBg", "removedBg", "movedAddedBg", "movedRemovedBg", "contextBg",
+    "addedContentBg", "removedContentBg", "contextContentBg", "addedSignColor",
+    "removedSignColor", "lineNumberBg", "lineNumberFg", "selectedHunk",
+    "badgeAdded", "badgeRemoved", "badgeNeutral", "fileNew", "fileDeleted",
+    "fileRenamed", "fileModified", "fileUntracked", "noteBorder", "noteBackground",
+    "noteTitleBackground", "noteTitleText",
+  }
+  for _, slot in ipairs(slots) do
+    assert(body:find("\n" .. slot .. " ", 1, true) or body:find("\n" .. slot .. "=", 1, true),
+      "hunk leaves " .. slot .. " to the base theme")
+  end
+
+  -- Four names that only look like keys. Matched with the trailing space the
+  -- alignment gives them, so addedBg and removedBg do not answer for them.
+  for _, name in ipairs({ "\nadded ", "\nremoved ", "\ncontext ", "\nlineNumber " }) do
+    assert(not body:find(name, 1, true),
+      "hunk writes " .. name:gsub("%s", "") .. ", which it never reads")
+  end
+
+  -- Both tables, which is the migration shape hunk documents: the released
+  -- version reads only the roles, its successor prefers the scopes.
+  assert(body:find("[custom_theme.syntax]", 1, true), "hunk theme has no role table")
+  assert(body:find("[custom_theme.syntax_scopes]", 1, true), "hunk theme has no scope table")
+end)
+
+check("the yazi theme uses section and key names yazi still knows", function()
+  local body = require("sora.extras").files()["extras/yazi/sora.toml"]
+  assert(body, "missing extras/yazi/sora.toml")
+
+  -- Taken from yazi's own preset theme. It renamed [manager] to [mgr] and
+  -- [select] to [pick], and moved the tab, mode and hovered keys out into
+  -- [tabs], [mode] and [indicator].
+  local sections = {
+    flavor = true, app = true, mgr = true, tabs = true, mode = true,
+    indicator = true, status = true, which = true, confirm = true, spot = true,
+    notify = true, pick = true, input = true, cmp = true, tasks = true,
+    help = true, filetype = true,
+  }
+  -- Only names retired everywhere. `hovered` is not among them: it left [mgr]
+  -- but is still a key of [tasks] and [help]. preview_hovered covers that case.
+  local retired = {
+    "%[manager%]", "%[select%]", "preview_hovered",
+    "tab_active", "tab_inactive", "mode_normal", "mode_select", "mode_unset",
+    "separator_open", "separator_close",
+  }
+
+  local seen = 0
+  for name in body:gmatch("\n%[([a-z]+)%]") do
+    assert(sections[name], "yazi theme writes [" .. name .. "], which yazi does not read")
+    seen = seen + 1
+  end
+  assert(seen >= 15, "yazi theme covers only " .. seen .. " sections")
+
+  for _, pattern in ipairs(retired) do
+    assert(not body:find(pattern),
+      "yazi theme still writes " .. pattern:gsub("%%", "") .. ", which yazi retired")
+  end
+end)
+
 check("lualine theme loads", function()
   local theme = require("lualine.themes.sora")
   assert(theme.normal and theme.normal.a, "lualine theme malformed")
