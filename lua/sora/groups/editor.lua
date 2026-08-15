@@ -43,15 +43,16 @@ function M.get(c)
     TabLineSel   = { fg = c.fg_bright, bg = c.bg, bold = true },
 
     Pmenu        = { fg = c.fg, bg = c.bg_float },
-    PmenuSel     = { fg = c.fg_bright, bg = c.bg_selection },
+    PmenuSel     = { bg = c.bg_cursorline, bold = true },
     PmenuSbar    = { bg = c.bg_elevated },
     PmenuThumb   = { bg = c.fg_gutter },
     PmenuKind    = { fg = c.purple, bg = c.bg_float },
-    PmenuKindSel = { fg = c.purple, bg = c.bg_selection },
+    PmenuKindSel = { fg = c.purple, bg = c.bg_cursorline, bold = true },
     PmenuExtra   = { fg = c.fg_dim, bg = c.bg_float },
-    PmenuExtraSel = { fg = c.fg_dim, bg = c.bg_selection },
-    PmenuMatch    = { fg = c.accent, bg = c.bg_float, bold = true },
-    PmenuMatchSel = { fg = c.accent, bg = c.bg_selection, bold = true },
+    PmenuExtraSel = { fg = c.fg_dim, bg = c.bg_cursorline, bold = true },
+    PmenuMatch    = { fg = c.accent, bold = true },
+    PmenuMatchSel = { fg = c.accent, bold = true },
+    PmenuBorder   = { fg = c.border, bg = c.bg_float },
 
     Folded       = { fg = c.fg_comment, bg = c.bg_elevated },
 
