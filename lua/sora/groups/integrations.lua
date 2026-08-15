@@ -102,7 +102,7 @@ function M.get(c)
     WhichKey          = { fg = c.cyan },
     WhichKeyGroup     = { fg = c.purple },
     WhichKeyDesc      = { fg = c.fg },
-    WhichKeySeparator = { fg = c.fg_comment },
+    WhichKeySeparator = { fg = c.separator },
     WhichKeyValue     = { fg = c.fg_dim },
     WhichKeyBorder    = { fg = c.border },
 
@@ -123,7 +123,7 @@ function M.get(c)
     NvimTreeGitIgnored  = { fg = c.git_ignore },
     NvimTreeSpecialFile = { fg = c.gold },
     NvimTreeIndentMarker = { fg = c.guide },
-    NvimTreeWinSeparator = { fg = c.border },
+    NvimTreeWinSeparator = { fg = c.separator },
 
     -- Neo-tree
     NeoTreeNormal       = { link = "NormalFloat" },
@@ -137,7 +137,7 @@ function M.get(c)
     NeoTreeGitDeleted   = { fg = c.git_delete },
     NeoTreeGitIgnored   = { fg = c.git_ignore },
     NeoTreeIndentMarker = { fg = c.guide },
-    NeoTreeWinSeparator = { fg = c.border },
+    NeoTreeWinSeparator = { fg = c.separator },
 
     -- Lazy
     LazyButton       = { fg = c.fg, bg = c.bg_elevated },

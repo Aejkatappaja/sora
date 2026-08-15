@@ -24,17 +24,17 @@
       "tab_selected":                "#0e1018",
       "tab_line":                    "#80c8e0",
       "tab_loading":                 "#d4b878",
-      "tab_background_separator":    "#222838",
+      "tab_background_separator":    "#364050",
 
       "toolbar":                     "#0e1018",
       "toolbar_text":                "#c8d0e0",
       "toolbar_top_separator":       "#0a0c12",
-      "toolbar_bottom_separator":    "#222838",
-      "toolbar_vertical_separator":  "#222838",
+      "toolbar_bottom_separator":    "#364050",
+      "toolbar_vertical_separator":  "#364050",
 
       "toolbar_field":               "#14161e",
       "toolbar_field_text":          "#dce4f0",
-      "toolbar_field_border":        "#222838",
+      "toolbar_field_border":        "#364050",
       "toolbar_field_focus":         "#171a24",
       "toolbar_field_text_focus":    "#dce4f0",
       "toolbar_field_border_focus":  "#80c8e0",
@@ -43,13 +43,13 @@
 
       "popup":                       "#0e1018",
       "popup_text":                  "#c8d0e0",
-      "popup_border":                "#222838",
+      "popup_border":                "#364050",
       "popup_highlight":             "#1e2430",
       "popup_highlight_text":        "#dce4f0",
 
       "sidebar":                     "#0a0c12",
       "sidebar_text":                "#c8d0e0",
-      "sidebar_border":              "#222838",
+      "sidebar_border":              "#364050",
       "sidebar_highlight":           "#1e2430",
       "sidebar_highlight_text":      "#dce4f0",
 

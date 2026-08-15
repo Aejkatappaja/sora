@@ -16,7 +16,7 @@
   plus-style = syntax "#0e1c16"
   plus-emph-style = syntax bold "#142c1c"
   hunk-header-style = "#9aa4b8" italic
-  hunk-header-decoration-style = "#222838" box
+  hunk-header-decoration-style = "#364050" box
   file-style = "#80c8e0" bold
   file-decoration-style = "#80c8e0" ul
   line-numbers-minus-style = "#c46c78"

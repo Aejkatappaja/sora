@@ -13,7 +13,7 @@ marker_selected = { fg = "#80c8e0", bg = "#80c8e0" }
 count_copied = { fg = "#0e1018", bg = "#90c8a0" }
 count_cut = { fg = "#0e1018", bg = "#c46c78" }
 count_selected = { fg = "#0e1018", bg = "#80c8e0" }
-border_style = { fg = "#222838" }
+border_style = { fg = "#364050" }
 
 [tabs]
 active = { fg = "#c8d0e0", bg = "#14161e" }
@@ -48,7 +48,7 @@ mask = { bg = "#0a0c12" }
 cand = { fg = "#80c8e0" }
 rest = { fg = "#586478" }
 desc = { fg = "#9aa4b8" }
-separator_style = { fg = "#222838" }
+separator_style = { fg = "#364050" }
 
 [confirm]
 border = { fg = "#80c8e0" }

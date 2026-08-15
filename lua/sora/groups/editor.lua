@@ -35,7 +35,7 @@ function M.get(c)
 
     StatusLine   = { fg = c.fg, bg = c.bg_statusline },
     StatusLineNC = { fg = c.fg_gutter, bg = c.bg_statusline },
-    WinSeparator = { fg = c.border },
+    WinSeparator = { fg = c.separator },
     VertSplit    = { link = "WinSeparator" },
 
     TabLine      = { fg = c.fg_dim, bg = c.bg_float },
@@ -62,6 +62,7 @@ function M.get(c)
     MatchParen   = { fg = c.match_paren, bold = true },
     ModeMsg      = { fg = c.fg_bright, bold = true },
     MsgArea      = { fg = c.fg },
+    MsgSeparator = { fg = c.separator },
     MoreMsg      = { fg = c.cyan },
     Question     = { fg = c.cyan },
     Directory    = { fg = c.cyan },
