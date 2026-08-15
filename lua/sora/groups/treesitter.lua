@@ -49,6 +49,7 @@ function M.get(c)
     ["@function.method.call"]        = { fg = c.cyan },
 
     ["@constructor"]                 = { fg = c.peach, bold = true },
+    ["@constructor.lua"]             = { fg = c.peach },
 
     ["@operator"]                    = { fg = c.steel },
 
