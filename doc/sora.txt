@@ -118,8 +118,8 @@ truth. Core roles:
     Rose            #d0909c   booleans, builtins
     Gold            #d4b878   constants, numbers (the warm star)
     Peach           #d0a888   types, constructors
-    Teal            #78b8b0   tags, regex
-    Steel           #8898b8   operators, properties
+    Teal            #78b8b0   tags, special characters, escapes
+    Steel           #8898b8   operators
 
 ==============================================================================
 6. SUPPORTED PLUGINS                                            *sora-plugins*
