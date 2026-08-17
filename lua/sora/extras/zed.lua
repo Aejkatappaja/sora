@@ -227,7 +227,7 @@ local THEME = [==[
 
         "syntax": {
           "attribute": {
-            "color": "@peach@",
+            "color": "@type@",
             "font_style": "italic"
           },
           "boolean": {
@@ -246,11 +246,11 @@ local THEME = [==[
             "color": "@constant@"
           },
           "constructor": {
-            "color": "@peach@",
+            "color": "@type@",
             "font_weight": 700
           },
           "embedded": {
-            "color": "@regex@"
+            "color": "@teal@"
           },
           "emphasis": {
             "color": "@fg_bright@",
@@ -261,17 +261,17 @@ local THEME = [==[
             "font_weight": 700
           },
           "enum": {
-            "color": "@peach@"
+            "color": "@type@"
           },
           "function": {
-            "color": "@accent@"
+            "color": "@func@"
           },
           "function.builtin": {
-            "color": "@accent@",
+            "color": "@func@",
             "font_style": "italic"
           },
           "function.method": {
-            "color": "@accent@"
+            "color": "@func@"
           },
           "hint": {
             "color": "@hint@"
@@ -281,7 +281,7 @@ local THEME = [==[
             "font_style": "italic"
           },
           "label": {
-            "color": "@regex@"
+            "color": "@tag@"
           },
           "link_text": {
             "color": "@accent@"
@@ -306,7 +306,7 @@ local THEME = [==[
             "color": "@fg@"
           },
           "property": {
-            "color": "@operator@"
+            "color": "@steel@"
           },
           "punctuation": {
             "color": "@fg_dim@"
@@ -324,10 +324,10 @@ local THEME = [==[
             "color": "@operator@"
           },
           "string": {
-            "color": "@sage@"
+            "color": "@string@"
           },
           "string.doc": {
-            "color": "@sage@",
+            "color": "@string@",
             "font_style": "italic"
           },
           "string.escape": {
@@ -344,7 +344,7 @@ local THEME = [==[
             "color": "@constant@"
           },
           "tag": {
-            "color": "@regex@"
+            "color": "@tag@"
           },
           "tag.attribute": {
             "color": "@peach@"
@@ -360,10 +360,10 @@ local THEME = [==[
             "font_weight": 700
           },
           "type": {
-            "color": "@peach@"
+            "color": "@type@"
           },
           "type.builtin": {
-            "color": "@peach@",
+            "color": "@type@",
             "font_style": "italic"
           },
           "variable": {
@@ -384,7 +384,7 @@ local THEME = [==[
             "font_style": "italic"
           },
           "variant": {
-            "color": "@peach@"
+            "color": "@type@"
           }
         }
       }
@@ -413,6 +413,7 @@ function M.theme()
     fg_comment = c.fg_comment,
     fg_dim = c.fg_dim,
     fg_gutter = c.fg_gutter,
+    func = c.func,
     git_add = c.git_add,
     git_change = c.git_change,
     git_delete = c.git_delete,
@@ -428,6 +429,10 @@ function M.theme()
     regex = c.regex,
     rose = c.rose,
     sage = c.sage,
+    steel = c.steel,
+    string = c.string,
+    tag = c.tag,
+    teal = c.teal,
     terminal_black = c.terminal_black,
     terminal_blue = c.terminal_blue,
     terminal_bright_black = c.terminal_bright_black,
@@ -450,6 +455,7 @@ function M.theme()
     terminal_red = c.terminal_red,
     terminal_white = c.terminal_white,
     terminal_yellow = c.terminal_yellow,
+    type = c.type,
     variable = c.variable,
     warning = c.warning,
   }
