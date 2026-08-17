@@ -1,6 +1,6 @@
 id = "sora-theme"
 name = "Sora"
-version = "0.1.1"
+version = "0.1.2"
 schema_version = 1
 authors = ["aejkatappaja"]
 description = "A dark theme inspired by the sky above. Ethereal cyan, cool silver, deep OLED blacks."
