@@ -20,7 +20,7 @@ hi CursorLine    guibg=#171a24 cterm=NONE
 hi CursorLineNr  guifg=#80c8e0 gui=bold
 hi LineNr        guifg=#364050
 hi SignColumn    guifg=#364050 guibg=NONE
-hi VertSplit     guifg=#222838 guibg=NONE
+hi VertSplit     guifg=#364050 guibg=NONE
 hi StatusLine    guifg=#c8d0e0 guibg=#0a0c12
 hi StatusLineNC  guifg=#364050 guibg=#0a0c12
 hi TabLine       guifg=#9aa4b8 guibg=#0a0c12
@@ -34,8 +34,8 @@ hi Visual        guibg=#1e2430
 hi Search        guifg=#dce4f0 guibg=#1a3050
 hi IncSearch     guifg=#0e1018 guibg=#80c8e0
 hi MatchParen    guifg=#d4b878 gui=bold
-hi NonText       guifg=#222838
-hi SpecialKey    guifg=#222838
+hi NonText       guifg=#364050
+hi SpecialKey    guifg=#364050
 hi Folded        guifg=#586478 guibg=#14161e
 hi ColorColumn   guibg=#171a24
 hi Directory     guifg=#80c8e0
@@ -46,7 +46,7 @@ hi MoreMsg       guifg=#80c8e0
 hi Question      guifg=#80c8e0
 hi ModeMsg       guifg=#dce4f0 gui=bold
 hi Conceal       guifg=#9aa4b8
-hi EndOfBuffer   guifg=#222838
+hi EndOfBuffer   guifg=#364050
 hi WildMenu      guifg=#dce4f0 guibg=#1e2430
 hi SpellBad      guisp=#c46c78 gui=undercurl
 hi SpellCap      guisp=#c8a860 gui=undercurl

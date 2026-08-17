@@ -9,7 +9,7 @@
   --background-primary-alt:       #14161e;
   --background-secondary:         #0a0c12;
   --background-secondary-alt:     #14161e;
-  --background-modifier-border:   #222838;
+  --background-modifier-border:   #364050;
   --background-modifier-form-field: #14161e;
   --background-modifier-form-field-highlighted: #171a24;
   --background-modifier-box-shadow: rgba(0, 0, 0, 0.3);
@@ -39,7 +39,7 @@
   --interactive-accent:           #80c8e0;
   --interactive-accent-hsl:       197, 56%, 69%;
   --interactive-accent-hover:     #98d8f0;
-  --interactive-before:           #222838;
+  --interactive-before:           #364050;
 
   /* ── Scrollbar ── */
   --scrollbar-bg:                 #0e1018;
@@ -52,8 +52,8 @@
   --tab-text-color-focused-active: #80c8e0;
   --tab-text-color-focused-active-current: #c8d0e0;
   --tab-background-active:        #0e1018;
-  --tab-outline-color:            #222838;
-  --tab-divider-color:            #222838;
+  --tab-outline-color:            #364050;
+  --tab-divider-color:            #364050;
 
   /* ── Title bar ── */
   --titlebar-background:          #0a0c12;
@@ -70,7 +70,7 @@
   --nav-item-background-active:   #1e2430;
   --nav-heading-color:            #c8d0e0;
   --nav-heading-color-collapsed:  #8898b8;
-  --nav-indentation-guide-color:  #222838;
+  --nav-indentation-guide-color:  #364050;
 
   /* ── Headings ── */
   --h1-color:                     #80c8e0;
@@ -151,14 +151,14 @@
   --table-header-background:      #14161e;
   --table-header-background-hover: #171a24;
   --table-row-alt-background:     rgba(20, 22, 30, 0.5);
-  --table-border-color:           #222838;
+  --table-border-color:           #364050;
 
   /* ── Flashing (search highlight) ── */
   --flashing-background:          rgba(212, 184, 120, 0.25);
 
   /* ── Status bar ── */
   --status-bar-background:        #0a0c12;
-  --status-bar-border-color:      #222838;
+  --status-bar-border-color:      #364050;
   --status-bar-text-color:        #586478;
 
   /* ── Vault ── */
@@ -170,7 +170,7 @@
   --ribbon-background-collapsed:  #0a0c12;
 
   /* ── Divider ── */
-  --divider-color:                #222838;
+  --divider-color:                #364050;
   --divider-color-hover:          #364050;
 
   /* ── Icon ── */
@@ -180,7 +180,7 @@
   --icon-color-focused:           #80c8e0;
 
   /* ── Prompt (modals / command palette) ── */
-  --prompt-border-color:          #222838;
+  --prompt-border-color:          #364050;
 
   /* ── Bold / Italic ── */
   --bold-color:                   #dce4f0;

@@ -42,7 +42,8 @@ M.colors = {
 
   -- UI
   accent      = "#80c8e0",
-  border      = "#222838",
+  border      = "#364050",
+  separator   = "#222838",
   match_paren = "#d4b878",
   guide       = "#181c26",
   guide_active = "#282e3c",

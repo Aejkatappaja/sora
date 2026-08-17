@@ -53,6 +53,8 @@ function M.load()
       -- ground only: a transparent float with no edge is a floating paragraph,
       -- so the stroke FloatBorder declares stays.
       "FloatBorder",
+      "MiniTablineFill", "MiniTablineCurrent", "MiniTablineVisible", "MiniTablineHidden",
+      "MiniMapNormal",
     }
     for _, name in ipairs(transparent_groups) do
       if highlights[name] then

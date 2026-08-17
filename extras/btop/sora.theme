@@ -10,7 +10,7 @@ theme[selected_bg]="#1e2430"
 theme[selected_fg]="#dce4f0"
 theme[inactive_fg]="#586478"
 theme[graph_text]="#9aa4b8"
-theme[meter_bg]="#222838"
+theme[meter_bg]="#364050"
 
 # Graph colors
 theme[proc_misc]="#80c8e0"
@@ -18,7 +18,7 @@ theme[cpu_box]="#80c8e0"
 theme[mem_box]="#b0a0d8"
 theme[net_box]="#90c8a0"
 theme[proc_box]="#d0a888"
-theme[div_line]="#222838"
+theme[div_line]="#364050"
 
 # Temperature
 theme[temp_start]="#90c8a0"

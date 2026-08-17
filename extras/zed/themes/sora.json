@@ -8,12 +8,12 @@
       "appearance": "dark",
       "style": {
         "background": "#0e1018",
-        "border": "#222838",
+        "border": "#364050",
         "border.variant": "#1e2430",
         "border.focused": "#80c8e0",
         "border.selected": "#80c8e0",
         "border.transparent": "#00000000",
-        "border.disabled": "#222838",
+        "border.disabled": "#364050",
 
         "elevated_surface.background": "#14161e",
         "surface.background": "#0a0c12",
@@ -61,7 +61,7 @@
         "panel.background": "#0a0c12",
         "panel.focused_border": "#80c8e0",
 
-        "pane.focused_border": "#222838",
+        "pane.focused_border": "#364050",
 
         "scrollbar.thumb.background": "#36405040",
         "scrollbar.thumb.hover_background": "#36405080",
@@ -77,7 +77,7 @@
         "editor.highlighted_line.background": "#1e2430",
         "editor.line_number": "#364050",
         "editor.active_line_number": "#80c8e0",
-        "editor.invisible": "#222838",
+        "editor.invisible": "#364050",
         "editor.wrap_guide": "#181c26",
         "editor.active_wrap_guide": "#282e3c",
         "editor.indent_guide": "#181c26",

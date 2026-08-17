@@ -102,7 +102,7 @@ function M.get(c)
     WhichKey          = { fg = c.cyan },
     WhichKeyGroup     = { fg = c.purple },
     WhichKeyDesc      = { fg = c.fg },
-    WhichKeySeparator = { fg = c.fg_comment },
+    WhichKeySeparator = { fg = c.separator },
     WhichKeyValue     = { fg = c.fg_dim },
     WhichKeyBorder    = { fg = c.border },
 
@@ -123,7 +123,7 @@ function M.get(c)
     NvimTreeGitIgnored  = { fg = c.git_ignore },
     NvimTreeSpecialFile = { fg = c.gold },
     NvimTreeIndentMarker = { fg = c.guide },
-    NvimTreeWinSeparator = { fg = c.border },
+    NvimTreeWinSeparator = { fg = c.separator },
 
     -- Neo-tree
     NeoTreeNormal       = { link = "NormalFloat" },
@@ -137,7 +137,7 @@ function M.get(c)
     NeoTreeGitDeleted   = { fg = c.git_delete },
     NeoTreeGitIgnored   = { fg = c.git_ignore },
     NeoTreeIndentMarker = { fg = c.guide },
-    NeoTreeWinSeparator = { fg = c.border },
+    NeoTreeWinSeparator = { fg = c.separator },
 
     -- Lazy
     LazyButton       = { fg = c.fg, bg = c.bg_elevated },
@@ -178,16 +178,84 @@ function M.get(c)
     NotifyTRACETitle  = { fg = c.purple },
 
     -- Mini
-    MiniStatuslineModeNormal  = { fg = c.bg, bg = c.cyan, bold = true },
-    MiniStatuslineModeInsert  = { fg = c.bg, bg = c.sage, bold = true },
-    MiniStatuslineModeVisual  = { fg = c.bg, bg = c.purple, bold = true },
-    MiniStatuslineModeReplace = { fg = c.bg, bg = c.rose, bold = true },
-    MiniStatuslineModeCommand = { fg = c.bg, bg = c.gold, bold = true },
-    MiniStatuslineModeOther   = { fg = c.bg, bg = c.teal, bold = true },
-    MiniStatuslineFilename    = { fg = c.fg, bg = c.bg_elevated },
-    MiniStatuslineFileinfo    = { fg = c.fg_dim, bg = c.bg_elevated },
-    MiniStatuslineDevinfo     = { fg = c.fg_dim, bg = c.bg_elevated },
-    MiniStatuslineInactive    = { fg = c.fg_gutter, bg = c.bg_statusline },
+    MiniClueDescSingle             = { fg = c.fg },
+    MiniClueDescGroup              = { fg = c.purple },
+    MiniClueNextKey                = { fg = c.cyan },
+    MiniClueNextKeyWithPostkeys    = { fg = c.rose },
+    MiniClueSeparator              = { fg = c.separator },
+
+    MiniCmdlinePeekLineNr          = { fg = c.accent },
+    MiniCmdlinePeekSign            = { fg = c.purple },
+    MiniCmdlinePeekSep             = { fg = c.separator },
+
+    MiniFilesCursorLine            = { bg = c.bg_cursorline, bold = true },
+    MiniFilesTitle                 = { fg = c.fg_comment, bold = true },
+    MiniFilesTitleFocused          = { fg = c.accent, bold = true },
+
+    MiniHipatternsFixme            = { fg = c.bg, bg = c.error, bold = true },
+    MiniHipatternsHack             = { fg = c.bg, bg = c.warning, bold = true },
+    MiniHipatternsTodo             = { fg = c.bg, bg = c.info, bold = true },
+    MiniHipatternsNote             = { fg = c.bg, bg = c.hint, bold = true },
+
+    MiniIconsAzure                 = { fg = c.teal },
+    MiniIconsBlue                  = { fg = c.info },
+    MiniIconsCyan                  = { fg = c.cyan },
+    MiniIconsGreen                 = { fg = c.sage },
+    MiniIconsGrey                  = { fg = c.fg_dim },
+    MiniIconsOrange                = { fg = c.peach },
+    MiniIconsPurple                = { fg = c.purple },
+    MiniIconsRed                   = { fg = c.rose },
+    MiniIconsYellow                = { fg = c.gold },
+
+    MiniIndentscopeSymbol          = { fg = c.guide_active },
+
+    MiniInputPrompt                = { fg = c.accent, bold = true },
+    MiniInputCaret                 = { fg = c.info, bold = true },
+
+    MiniJump2dDim                  = { fg = c.fg_gutter },
+    MiniJump2dSpot                 = { fg = c.bg, bg = c.accent, bold = true },
+    MiniJump2dSpotAhead            = { fg = c.accent },
+
+    MiniMapNormal                  = { fg = c.fg_dim, bg = c.bg_float },
+
+    MiniPickMatchCurrent           = { bg = c.bg_cursorline, bold = true },
+    MiniPickMatchRanges            = { fg = c.accent, bold = true },
+    MiniPickMatchMarked            = { bg = c.bg_search },
+    MiniPickPrompt                 = { fg = c.fg },
+    MiniPickPromptCaret            = { fg = c.info },
+    MiniPickPromptPrefix           = { fg = c.accent },
+    MiniPickHeader                 = { fg = c.purple, bold = true },
+
+    MiniStarterFooter              = { fg = c.fg_comment, italic = true },
+    MiniStarterInactive            = { fg = c.fg_comment },
+    MiniStarterItemPrefix          = { fg = c.purple },
+    MiniStarterQuery               = { fg = c.accent },
+    MiniStarterSection             = { fg = c.sage },
+
+    MiniStatuslineModeNormal       = { fg = c.bg, bg = c.cyan, bold = true },
+    MiniStatuslineModeInsert       = { fg = c.bg, bg = c.sage, bold = true },
+    MiniStatuslineModeVisual       = { fg = c.bg, bg = c.purple, bold = true },
+    MiniStatuslineModeReplace      = { fg = c.bg, bg = c.rose, bold = true },
+    MiniStatuslineModeCommand      = { fg = c.bg, bg = c.gold, bold = true },
+    MiniStatuslineModeOther        = { fg = c.bg, bg = c.teal, bold = true },
+    -- I would propose changing bg_statusline to bg_elevated value, so we have
+    -- a slightly brighter statusline which is a better pairing with
+    -- WinSeparator for those of us that hate laststatus=3. This style also
+    -- mimics cendre.
+    MiniStatuslineFilename         = { fg = c.fg_dim, bg = c.bg_elevated },
+    MiniStatuslineFileinfo         = { fg = c.fg, bg = c.bg_search },
+    MiniStatuslineDevinfo          = { fg = c.fg, bg = c.bg_search },
+    MiniStatuslineInactive         = { fg = c.fg_gutter, bg = c.bg_elevated },
+
+    MiniTablineFill                = { bg = c.bg_elevated },
+    MiniTablineCurrent             = { fg = c.fg_bright, bg = c.bg_elevated, bold = true },
+    MiniTablineModifiedCurrent     = { bg = c.fg_bright, fg = c.bg, bold = true },
+    MiniTablineVisible             = { fg = c.fg_dim, bg = c.bg_elevated, bold = true },
+    MiniTablineModifiedVisible     = { bg = c.fg_dim, fg = c.bg, bold = true },
+    MiniTablineHidden              = { fg = c.fg_comment, bg = c.bg_elevated },
+    MiniTablineModifiedHidden      = { bg = c.fg_comment, fg = c.bg_float },
+
+    MiniTrailspace                 = { bg = c.fg_gutter },
 
     -- Snacks
     SnacksIndent      = { fg = c.guide },
@@ -199,8 +267,9 @@ function M.get(c)
     FlashCurrent = { fg = c.fg_bright, bg = c.bg_search },
 
     -- Treesitter context
-    TreesitterContext           = { bg = c.bg_elevated },
-    TreesitterContextLineNumber = { fg = c.fg_gutter_active, bg = c.bg_elevated },
+    TreesitterContext           = { bg = c.bg_float },
+    TreesitterContextLineNumber = { fg = c.fg_gutter },
+    TreesitterContextBottom     = { underline = true, sp = c.guide },
 
     -- Dashboard / Alpha
     DashboardHeader  = { fg = c.cyan },

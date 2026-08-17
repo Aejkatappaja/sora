@@ -99,9 +99,10 @@ check("no group repeats a float surface, so plugin windows can inherit it", func
     -- blink.cmp points its windows at its own groups rather than at the float
     -- surfaces, so they cannot inherit and have to pin a colour.
     if name:match("^BlinkCmp") then return true end
-    -- Names bg_statusline, which is the same hex as bg_float. It owns its ground
-    -- rather than inheriting one, and is stripped by name under transparent.
-    return name == "StatusLine"
+    -- Names bg_statusline, which is the same hex as bg_float, which is the
+    -- same hex as border. Both own their ground rather than inheriting one,
+    -- and are stripped by name under transparent.
+    return name == "StatusLine" or name == "StatusLineNC"
   end
 
   for name, hl in pairs(built) do

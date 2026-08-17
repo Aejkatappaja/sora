@@ -9,8 +9,8 @@ cursor_border = "#80c8e0"
 selection_bg = "#1e2430"
 selection_fg = "#dce4f0"
 compose_cursor = "#d4b878"
-scrollbar_thumb = "#222838"
-split = "#222838"
+scrollbar_thumb = "#364050"
+split = "#364050"
 
 ansi = [
     "#0e1018",

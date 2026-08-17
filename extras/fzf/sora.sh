@@ -7,7 +7,7 @@
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --color=bg+:#1e2430 \
   --color=bg:#0e1018 \
-  --color=border:#222838 \
+  --color=border:#364050 \
   --color=fg:#c8d0e0 \
   --color=fg+:#dce4f0 \
   --color=gutter:#0e1018 \
@@ -19,6 +19,6 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --color=pointer:#80c8e0 \
   --color=prompt:#b0a0d8 \
   --color=query:#c8d0e0 \
-  --color=scrollbar:#222838 \
-  --color=separator:#222838 \
+  --color=scrollbar:#364050 \
+  --color=separator:#364050 \
   --color=spinner:#80c8e0"
