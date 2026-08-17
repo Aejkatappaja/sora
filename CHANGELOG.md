@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.8.0](https://github.com/Aejkatappaja/sora/compare/v1.7.0...v1.8.0) (2026-08-17)
+
+
+### Features
+
+* **integrations:** add comprehensive support for mini.nvim ([6fa304f](https://github.com/Aejkatappaja/sora/commit/6fa304fe35c1586d09a29889bf4560dc40f40a9a))
+* **integrations:** add full support for mini.nvim ([e89a278](https://github.com/Aejkatappaja/sora/commit/e89a278e988993293c6b983b5aed8eaecbb8b6e3))
+
+
+### Bug Fixes
+
+* **editor:** add PmenuBorder and bold cursorline in popup menu ([cfc736e](https://github.com/Aejkatappaja/sora/commit/cfc736e79a67141c7b91b218a62d9cda94c8bbee))
+* **groups:** do not bold lua table brackets ([52b3d84](https://github.com/Aejkatappaja/sora/commit/52b3d84fe3a96d09395b33c8a149877ad6ea1edd))
+* **palette:** raise 'border' and add new 'separator' color ([74b12a0](https://github.com/Aejkatappaja/sora/commit/74b12a07877a4ba2f39b7a4f1cac7c1c84f84b26))
+* **zed:** bind the invisible characters to nontext, not border ([5f7f811](https://github.com/Aejkatappaja/sora/commit/5f7f81114e6a89620928353fdaa7d42968279184))
+* **zed:** invisible characters followed the wrong palette key ([73987de](https://github.com/Aejkatappaja/sora/commit/73987dec6b42538ff8f4a41c8a8f9f3df69048e1))
+
 ## [1.7.0](https://github.com/Aejkatappaja/sora/compare/v1.6.0...v1.7.0) (2026-08-10)
 
 
