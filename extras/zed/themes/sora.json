@@ -77,7 +77,7 @@
         "editor.highlighted_line.background": "#1e2430",
         "editor.line_number": "#364050",
         "editor.active_line_number": "#80c8e0",
-        "editor.invisible": "#364050",
+        "editor.invisible": "#222838",
         "editor.wrap_guide": "#181c26",
         "editor.active_wrap_guide": "#282e3c",
         "editor.indent_guide": "#181c26",

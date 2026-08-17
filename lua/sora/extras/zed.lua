@@ -87,7 +87,7 @@ local THEME = [==[
         "editor.highlighted_line.background": "@bg_selection@",
         "editor.line_number": "@fg_gutter@",
         "editor.active_line_number": "@accent@",
-        "editor.invisible": "@border@",
+        "editor.invisible": "@nontext@",
         "editor.wrap_guide": "@guide@",
         "editor.active_wrap_guide": "@guide_active@",
         "editor.indent_guide": "@guide@",
@@ -421,6 +421,7 @@ function M.theme()
     hint = c.hint,
     info = c.info,
     keyword = c.keyword,
+    nontext = c.nontext,
     ok = c.ok,
     operator = c.operator,
     peach = c.peach,
@@ -475,7 +476,7 @@ function M.extension()
   return [[
 id = "sora-theme"
 name = "Sora"
-version = "0.1.1"
+version = "0.1.2"
 schema_version = 1
 authors = ["aejkatappaja"]
 description = "A dark theme inspired by the sky above. Ethereal cyan, cool silver, deep OLED blacks."

@@ -99,9 +99,10 @@ check("no group repeats a float surface, so plugin windows can inherit it", func
     -- blink.cmp points its windows at its own groups rather than at the float
     -- surfaces, so they cannot inherit and have to pin a colour.
     if name:match("^BlinkCmp") then return true end
-    -- Names bg_statusline, which is the same hex as bg_float, which is the
-    -- same hex as border. Both own their ground rather than inheriting one,
-    -- and are stripped by name under transparent.
+    -- Both own their ground rather than inheriting one, and both are stripped by
+    -- name under transparent. They collide by accident: bg_statusline is the same
+    -- hex as bg_float, and since border took fg_gutter's value, StatusLineNC now
+    -- carries the same pair FloatBorder does.
     return name == "StatusLine" or name == "StatusLineNC"
   end
 
@@ -473,6 +474,29 @@ check("the opencode theme fills every colour its Theme type declares", function(
 
   assert(body:match('"diffAddedBg": "([^"]+)"') ~= body:match('"diffRemovedBg": "([^"]+)"'),
     "opencode gives added and removed rows the same ground")
+end)
+
+-- Zed's registry pins a commit, so a theme change only reaches anybody once the
+-- version moves and a pull request repoints the submodule over there. Nothing in
+-- this repository can tell that the two came apart, which is why it is pinned
+-- here instead: change the theme and this fails until you have done both.
+check("the Zed extension version moves when its theme does", function()
+  local files = require("sora.extras").files()
+  local version = files["extras/zed/extension.toml"]:match('version = "([^"]+)"')
+  local digest = vim.fn.sha256(files["extras/zed/themes/sora.json"])
+
+  local PUBLISHED = {
+    version = "0.1.2",
+    digest = "bdd4f7b394bdc54a78e0b9d433c9166fb3634613bac2dd33de98196d31b94120",
+  }
+
+  assert(version == PUBLISHED.version and digest == PUBLISHED.digest, table.concat({
+    "the Zed theme or its version moved. Three steps, in order:",
+    "  1. bump version in lua/sora/extras/zed.lua",
+    "  2. record it here: version = \"" .. version .. "\", digest = \"" .. digest .. "\"",
+    "  3. open a pull request on zed-industries/extensions repointing the",
+    "     submodule at the merge commit and bumping the same version there",
+  }, "\n"))
 end)
 
 check("the hunk theme fills every slot hunk reads, and none it does not", function()
