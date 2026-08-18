@@ -16,6 +16,7 @@ local editors = require("sora.extras.editors")
 local firefox_start = require("sora.extras.firefox_start")
 local zed = require("sora.extras.zed")
 local obsidian = require("sora.extras.obsidian")
+local yaak = require("sora.extras.yaak")
 
 --- @type table<string, fun(): string>
 local FILES = {
@@ -48,6 +49,10 @@ local FILES = {
   ["extras/zed/themes/sora.json"] = zed.theme,
   ["extras/zed/extension.toml"] = zed.extension,
   ["extras/zed/LICENSE"] = zed.licence,
+
+  ["extras/yaak/src/index.ts"] = yaak.theme,
+  ["extras/yaak/package.json"] = yaak.package_json,
+  ["extras/yaak/tsconfig.json"] = yaak.tsconfig,
 
   ["extras/obsidian/sora/theme.css"] = obsidian.theme,
   ["extras/obsidian/sora/manifest.json"] = obsidian.manifest,

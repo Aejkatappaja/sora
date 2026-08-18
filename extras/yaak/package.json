@@ -1,0 +1,24 @@
+{
+  "name": "@aejkatappaja/sora-theme",
+  "displayName": "Sora for Yaak",
+  "description": "A dark theme inspired by the sky above. Ethereal cyan, cool silver, deep OLED blacks.",
+  "version": "0.1.0",
+  "private": false,
+  "license": "MIT",
+  "author": "aejkatappaja",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aejkatappaja/sora.git"
+  },
+  "keywords": ["yaak", "yaak-plugin", "theme", "dark", "sora"],
+  "scripts": {
+    "build": "yaakcli build"
+  },
+  "dependencies": {
+    "@yaakapp/api": "^0.8.3"
+  },
+  "devDependencies": {
+    "@yaakapp/cli": "^2026.6.1",
+    "typescript": "^5.5.2"
+  }
+}
