@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.9.0](https://github.com/Aejkatappaja/sora/compare/v1.8.0...v1.9.0) (2026-08-18)
+
+
+### Features
+
+* **extras:** cover Yaak ([92ca175](https://github.com/Aejkatappaja/sora/commit/92ca1759b884c6c90b1815616b56cb3588ba730a))
+* **extras:** cover Yaak ([e586184](https://github.com/Aejkatappaja/sora/commit/e5861847cfc483734f92681e29e62fd76f04d178))
+
 ## [1.8.0](https://github.com/Aejkatappaja/sora/compare/v1.7.0...v1.8.0) (2026-08-17)
 
 
