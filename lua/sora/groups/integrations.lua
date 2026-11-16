@@ -257,6 +257,15 @@ function M.get(c)
 
     MiniTrailspace                 = { bg = c.fg_gutter },
 
+    -- RainbowDelimiter
+    RainbowDelimiterRed = { fg = c.rose },
+    RainbowDelimiterCyan = { fg = c.cyan },
+    RainbowDelimiterBlue = { fg = c.steel },
+    RainbowDelimiterGreen = { fg = c.sage },
+    RainbowDelimiterOrange = { fg = c.peach },
+    RainbowDelimiterYellow = { fg = c.gold },
+    RainbowDelimiterViolet = { fg = c.purple },
+
     -- Snacks
     SnacksIndent      = { fg = c.guide },
     SnacksIndentScope = { fg = c.guide_active },
